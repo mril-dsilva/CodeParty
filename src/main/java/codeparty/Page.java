@@ -10,9 +10,7 @@ public abstract class Page
 	
 	// Constructor
     public Page(UUID id) {
-    	
-        this.id = id;
-        
+    	this.id = id;
     }
     
     // Getter method for id
@@ -27,11 +25,13 @@ public abstract class Page
     
     // Method to add a link to another page
     public void addLink(Page page) {
-        // void
+    	links.add(page);
+    	// void
     }
     
     // Method to remove a link from the page
     public void removeLink(Page page) {
+    	links.remove(page);
         // void
     }
 	

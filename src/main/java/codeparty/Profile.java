@@ -1,7 +1,7 @@
 package codeparty;
 
 import java.util.UUID;
-import javafx.scene.image.Image;
+import java.awt.Image;
 
 public abstract class Profile extends Page
 {

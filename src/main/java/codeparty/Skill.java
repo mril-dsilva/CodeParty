@@ -2,7 +2,7 @@ package codeparty;
 
 import java.util.UUID;
 
-import javafx.scene.image.Image;
+import java.awt.Image;
 
 public class Skill extends Profile
 {
