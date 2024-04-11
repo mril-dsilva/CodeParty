@@ -20,15 +20,19 @@ class TestCases
 	private Experience emilyexp;
 	private Person emily;
 	private Project buttonapp;
+	private JobPosting engineerjob;
+	private Request request1;
+	GregorianCalendar startDate = new GregorianCalendar(2020, 0, 1); 
+    GregorianCalendar endDate = new GregorianCalendar(2022, 11, 31); 
+    Image profile = null; 
+	Image banner = null;
+	
+	Class<Page>[] allowedLinks = new Class[]{};
+	ArrayList<Experience> experiences = new ArrayList<Experience>();
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		Image profile = null; 
-		Image banner = null;
-		GregorianCalendar startDate = new GregorianCalendar(2020, 0, 1); 
-        GregorianCalendar endDate = new GregorianCalendar(2022, 11, 31); 
-		Class<Page>[] allowedLinks = new Class[]{};
-		ArrayList<Experience> experiences = new ArrayList<Experience>();
+		
 		
 		//Creating a Skill
 		java = new Skill(UUID.randomUUID(), profile, banner, "Java Programming", "This skill represents proficiency in Java programming.", allowedLinks, "Write better Java code!");
@@ -41,6 +45,12 @@ class TestCases
 		emily = new Person(UUID.randomUUID(), profile, banner, "Emily Chen", "Gamer, and Computer Science major at Center College", allowedLinks, emilyexp, experiences, PersonType.BASE);
 		//Creating a Project
 		buttonapp = new Project(UUID.randomUUID(), profile, banner, "Button App", "You guessed it. This is an app with a button.", emily, "A button to solve all your problems", "githublink.com");
+		
+		//Creating a job posting
+		engineerjob = new JobPosting(UUID.randomUUID(), autonomy, emily, "Engineer Job", "Apply to be an Engineer", startDate,  endDate, allowedLinks);
+		//Creating a friend request
+		request1 = new Request(UUID.randomUUID(), "Let's work together!", emily, startDate);
+		
 		
 	}
 
@@ -56,8 +66,8 @@ class TestCases
 
 	        
 	        //Testing Company Creation
-	        //assertEquals(autonomy.getProfilePhoto(), null);
-	        //assertEquals(autonomy.getBanner(), null);
+	        assertEquals(autonomy.getProfilePhoto(), null);
+	        assertEquals(autonomy.getBanner(), null);
 	        assertEquals(autonomy.getName(), "Autonomy Technologies");
 	        assertEquals(autonomy.getBio(), "AI driven automobile tech company");
 	        assertEquals(autonomy.getTagline(), "Bleeding Edge Automobile Solutions");
@@ -86,6 +96,25 @@ class TestCases
 	        assertEquals(buttonapp.getOwner(), emily);
 	        assertEquals(buttonapp.getTagline(), "A button to solve all your problems");
 	        assertEquals(buttonapp.getRepositoryLink(), "githublink.com");
+	        
+	        //Testing Request Creation
+	        assertNotNull(request1.getId());
+	        assertEquals("Let's work together!", request1.getMessage());
+	        assertEquals(emily, request1.getPerson());
+	        assertEquals(startDate, request1.getDateCreated());
+	        String newMessage = "New message";
+	        request1.setMessage(newMessage);
+	        assertEquals(newMessage, request1.getMessage());
+	        
+	        // Testing Job Creation
+	        assertNotNull(engineerjob.getId());
+	        assertEquals(autonomy, engineerjob.getCompany());
+	        assertEquals(emily, engineerjob.getContact());
+	        assertEquals("Engineer Job", engineerjob.getJobName());
+	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
+	        assertEquals(startDate, engineerjob.getDatePosted());
+	        assertEquals(endDate, engineerjob.getExpiryDate());
+	        assertEquals(allowedLinks, engineerjob.getALLOWED_LINKS());
 	    
 
 	        // Make some changes to the Person emily

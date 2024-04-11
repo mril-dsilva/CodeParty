@@ -18,6 +18,7 @@ public class JobPosting extends Page
 			GregorianCalendar expiryDate, Class<Page>[] ALLOWED_LINKS) 
 	{
 		super(id);
+		this.id = id;
 		this.company = company;
 		this.contact = contact;
 		this.jobName = jobName;

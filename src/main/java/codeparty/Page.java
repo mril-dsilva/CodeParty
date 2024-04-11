@@ -13,16 +13,6 @@ public abstract class Page
     	this.id = id;
     }
     
-    // Getter method for id
-    public UUID getId() {
-        return id;
-    }
-    
-    // Getter method for links
-    public ArrayList<Page> getLinks() {
-        return links;
-    }
-    
     // Method to add a link to another page
     public void addLink(Page page) {
     	links.add(page);
