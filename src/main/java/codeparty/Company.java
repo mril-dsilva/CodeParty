@@ -7,19 +7,18 @@ import java.awt.Image;
 public class Company extends Profile
 {
 	String tagline;
-	Class<Page>[] ALLOWED_LINKS;
 	
-	public Company(UUID id, Image profilePhoto, Image banner, String name, String bio, String tagline, Class<Page>[] ALLOWED_LINKS) {
+	
+	public Company(String id, Image profilePhoto, Image banner, String name, String bio, String tagline) {
 		super(id, profilePhoto, banner, name, bio);
 		this.tagline = tagline;
-		this.ALLOWED_LINKS = ALLOWED_LINKS;
 	
 	}
 	
 	/**
 	 * @return the id
 	 */
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -36,20 +35,6 @@ public class Company extends Profile
 	 */
 	public void setTagline(String tagline) {
 		this.tagline = tagline;
-	}
-
-	/**
-	 * @return the aLLOWED_LINKS
-	 */
-	public Class<Page>[] getALLOWED_LINKS() {
-		return ALLOWED_LINKS;
-	}
-
-	/**
-	 * @param aLLOWED_LINKS the aLLOWED_LINKS to set
-	 */
-	public void setALLOWED_LINKS(Class<Page>[] aLLOWED_LINKS) {
-		ALLOWED_LINKS = aLLOWED_LINKS;
 	}
 	
 	

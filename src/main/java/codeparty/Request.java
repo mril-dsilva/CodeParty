@@ -5,12 +5,12 @@ import java.util.UUID;
 
 public class Request
 {
-	UUID id;
+	String id;
 	String message;
 	Person person;
 	GregorianCalendar dateCreated;
 	
-	public Request(UUID id, String message,Person person,GregorianCalendar dateCreated)
+	public Request(String id, String message,Person person,GregorianCalendar dateCreated)
 	{
 		this.id = id;
 		this.message = message;
@@ -23,7 +23,7 @@ public class Request
 	/**
 	 * @return the id
 	 */
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 

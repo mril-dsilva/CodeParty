@@ -5,17 +5,17 @@ import java.util.UUID;
 
 public class JobPosting extends Page
 {
-	UUID id;
+	String id;
 	Company company;
 	Person contact;
 	String jobName;
 	String body;
 	GregorianCalendar datePosted;
 	GregorianCalendar expiryDate;
-	Class<Page>[] ALLOWED_LINKS;
+
 	
-	public JobPosting(UUID id, Company company, Person contact, String jobName, String body, GregorianCalendar datePosted,  
-			GregorianCalendar expiryDate, Class<Page>[] ALLOWED_LINKS) 
+	public JobPosting(String id, Company company, Person contact, String jobName, String body, GregorianCalendar datePosted,  
+			GregorianCalendar expiryDate) 
 	{
 		super(id);
 		this.id = id;
@@ -25,13 +25,13 @@ public class JobPosting extends Page
 		this.body = body;
 		this.datePosted = datePosted;
 		this.expiryDate = expiryDate;
-		this.ALLOWED_LINKS = ALLOWED_LINKS;
+
 		
 	}
 	/**
 	 * @return the id
 	 */
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -120,18 +120,4 @@ public class JobPosting extends Page
 		this.expiryDate = expiryDate;
 	}
 
-	/**
-	 * @return the aLLOWED_LINKS
-	 */
-	public Class<Page>[] getALLOWED_LINKS() {
-		return ALLOWED_LINKS;
-	}
-
-	/**
-	 * @param aLLOWED_LINKS the aLLOWED_LINKS to set
-	 */
-	public void setALLOWED_LINKS(Class<Page>[] aLLOWED_LINKS) {
-		ALLOWED_LINKS = aLLOWED_LINKS;
-	}
-	
 }

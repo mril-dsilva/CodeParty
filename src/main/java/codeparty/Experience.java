@@ -15,11 +15,10 @@ public class Experience
 	/**
 	 * @return the id
 	 */
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
-
-
+	
 	/**
 	 * @param company the company to set
 	 */
@@ -83,14 +82,14 @@ public class Experience
 		this.description = description;
 	}
 
-	UUID id;
+	String id;
 	Company company;
 	String jobTitle;
 	GregorianCalendar startDate;
 	GregorianCalendar endDate;
 	String description;
 	
-	public Experience(UUID id, Company company, String jobTitle, GregorianCalendar startDate, GregorianCalendar endDate,
+	public Experience(String id, Company company, String jobTitle, GregorianCalendar startDate, GregorianCalendar endDate,
 			String description) {
 		this.id = id;
 		this.company = company;
@@ -99,7 +98,6 @@ public class Experience
 		this.endDate = endDate;
 		this.description = description;
 	}
-	
 	
 	
 }

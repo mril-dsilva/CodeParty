@@ -5,7 +5,7 @@ import java.awt.Image;
 
 public abstract class Profile extends Page
 {
-	public Profile(UUID id, Image profilePhoto, Image banner, String name, String bio) {
+	public Profile(String id, Image profilePhoto, Image banner, String name, String bio) {
 		super(id);
 		this.profilePhoto = profilePhoto;
 		this.banner = banner;

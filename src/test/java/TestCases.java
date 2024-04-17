@@ -27,7 +27,6 @@ class TestCases
     Image profile = null; 
 	Image banner = null;
 	
-	Class<Page>[] allowedLinks = new Class[]{};
 	ArrayList<Experience> experiences = new ArrayList<Experience>();
 	
 	@BeforeEach
@@ -35,21 +34,21 @@ class TestCases
 		
 		
 		//Creating a Skill
-		java = new Skill(UUID.randomUUID(), profile, banner, "Java Programming", "This skill represents proficiency in Java programming.", allowedLinks, "Write better Java code!");
+		java = new Skill(UUID.randomUUID().toString().toString(), profile, banner, "Java Programming", "This skill represents proficiency in Java programming.", "Write better Java code!");
 		//Creating a Company
-		autonomy = new Company(UUID.randomUUID(), profile, banner, "Autonomy Technologies", "AI driven automobile tech company", "Bleeding Edge Automobile Solutions", allowedLinks);
+		autonomy = new Company(UUID.randomUUID().toString(), profile, banner, "Autonomy Technologies", "AI driven automobile tech company", "Bleeding Edge Automobile Solutions");
 		//Creating an Experience
-		emilyexp = new Experience(UUID.randomUUID(), autonomy, "Software Engineer",startDate,endDate, "Solved problems with code!");
+		emilyexp = new Experience(UUID.randomUUID().toString(), autonomy, "Software Engineer",startDate,endDate, "Solved problems with code!");
 		experiences.add(emilyexp);
-		//Creating a Person
-		emily = new Person(UUID.randomUUID(), profile, banner, "Emily Chen", "Gamer, and Computer Science major at Center College", allowedLinks, emilyexp, experiences, PersonType.BASE);
+		//Creating a Person 
+		emily = new Person(UUID.randomUUID().toString(), profile, banner, "Emily Chen", "Gamer, and Computer Science major at Center College", emilyexp, experiences, PersonType.BASE);
 		//Creating a Project
-		buttonapp = new Project(UUID.randomUUID(), profile, banner, "Button App", "You guessed it. This is an app with a button.", emily, "A button to solve all your problems", "githublink.com");
+		buttonapp = new Project(UUID.randomUUID().toString(), profile, banner, "Button App", "You guessed it. This is an app with a button.", emily, "A button to solve all your problems", "githublink.com");
 		
 		//Creating a job posting
-		engineerjob = new JobPosting(UUID.randomUUID(), autonomy, emily, "Engineer Job", "Apply to be an Engineer", startDate,  endDate, allowedLinks);
+		engineerjob = new JobPosting(UUID.randomUUID().toString(), autonomy, emily, "Engineer Job", "Apply to be an Engineer", startDate,  endDate);
 		//Creating a friend request
-		request1 = new Request(UUID.randomUUID(), "Let's work together!", emily, startDate);
+		request1 = new Request(UUID.randomUUID().toString(), "Let's work together!", emily, startDate);
 		
 		
 	}
@@ -114,7 +113,6 @@ class TestCases
 	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
 	        assertEquals(startDate, engineerjob.getDatePosted());
 	        assertEquals(endDate, engineerjob.getExpiryDate());
-	        assertEquals(allowedLinks, engineerjob.getALLOWED_LINKS());
 	    
 
 	        // Make some changes to the Person emily

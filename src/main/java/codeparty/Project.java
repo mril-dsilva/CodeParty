@@ -6,7 +6,7 @@ import java.awt.Image;
 
 public class Project extends Profile
 {
-	public Project(UUID id, Image profilePhoto, Image banner, String name, String bio, Person owner, String tagline, String repositoryLink) {
+	public Project(String id, Image profilePhoto, Image banner, String name, String bio, Person owner, String tagline, String repositoryLink) {
 		super(id, profilePhoto, banner, name, bio);
 		this.owner = owner;
 		this.tagline = tagline;
@@ -17,12 +17,6 @@ public class Project extends Profile
 	Person owner;
 	String tagline;
 	String repositoryLink;
-	// Class array representing allowed links
-    Class<Page>[] ALLOWED_LINKS;
-    // Getter for ALLOWED_LINKS
-    public Class<Page>[] getAllowedLinks() {
-        return ALLOWED_LINKS;
-    }
 	/**
 	 * @return the owner
 	 */
@@ -59,18 +53,5 @@ public class Project extends Profile
 	public void setRepositoryLink(String repositoryLink) {
 		this.repositoryLink = repositoryLink;
 	}
-	/**
-	 * @return the aLLOWED_LINKS
-	 */
-	public Class<Page>[] getALLOWED_LINKS() {
-		return ALLOWED_LINKS;
-	}
-	/**
-	 * @param aLLOWED_LINKS the aLLOWED_LINKS to set
-	 */
-	public void setALLOWED_LINKS(Class<Page>[] aLLOWED_LINKS) {
-		ALLOWED_LINKS = aLLOWED_LINKS;
-	}
-    
 	
 }
