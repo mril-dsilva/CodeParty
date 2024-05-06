@@ -3,6 +3,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +33,8 @@ class TestCases
 	ArrayList<Experience> experiences = new ArrayList<Experience>();
 	ArrayList<String> editpermissions = new ArrayList<String>();
 	
+	Map<Class<?>, ArrayList<String>> links = new HashMap<>();
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		
@@ -53,7 +57,7 @@ class TestCases
 		request1 = new Request(UUID.randomUUID().toString(), "Let's work together!", emily, startDate);
 		//Creating person 2
 		john = new Person(UUID.randomUUID().toString(),"John Chen", "Gamer, and Politics major at Center College", emilyexp, experiences, PersonType.BASE);
-		
+	
 		
 	}
 
@@ -78,7 +82,6 @@ class TestCases
 	        String X = autonomy.getId();
 	        assertEquals(autonomy.getId(), X);
 	        System.out.println(X);
-	    
 
 	        //Testing Experience Creation
 	        emilyexp.setCompany(autonomy);
@@ -113,7 +116,25 @@ class TestCases
 	        emily.addEditor(john.getId());
 	        emily.removeEditor(john.getId());
 	        assertEquals(emily.getUsersCanEdit(), editpermissions);
-	    
+	        emily.addLink(Project.class, buttonapp.getId());
+	        emily.removeLink(Project.class, buttonapp.getId());
+	        emily.setLinks(links);
+	        assertEquals(emily.getLinks(), links);
+	        
+	        // Make some changes to the Person emily
+	        String newName = "Mril D'silva";
+	        String newBio = "Student at Centre College";
+	        PersonType newType = PersonType.MENTOR;
+
+	        emily.setName(newName);
+	        emily.setBio(newBio);
+	        emily.setType(newType);
+
+	        // Verify the changes
+	        assertEquals(emily.getName(), newName);
+	        assertEquals(emily.getBio(), newBio);
+	        assertEquals(emily.getType(), newType);
+	        
 	        //Testing ProjectCreation
 	        assertEquals(buttonapp.getName(), "Button App");
 	        assertEquals(buttonapp.getBio(), "You guessed it. This is an app with a button.");
@@ -143,29 +164,22 @@ class TestCases
 	        
 	        // Testing Job Creation
 	        assertNotNull(engineerjob.getId());
+	        engineerjob.setCompany(autonomy);
 	        assertEquals(autonomy, engineerjob.getCompany());
 	        assertEquals(emily, engineerjob.getContact());
+	        engineerjob.setContact(john);
+	        assertEquals(john, engineerjob.getContact());
 	        assertEquals("Engineer Job", engineerjob.getJobName());
 	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
+	        engineerjob.setDatePosted(startDate);
+	        engineerjob.setExpiryDate(endDate);
 	        assertEquals(startDate, engineerjob.getDatePosted());
 	        assertEquals(endDate, engineerjob.getExpiryDate());
-	    
-
-	        // Make some changes to the Person emily
-	        String newName = "Mril D'silva";
-	        String newBio = "Student at Centre College";
-	        PersonType newType = PersonType.MENTOR;
-
-	        emily.setName(newName);
-	        emily.setBio(newBio);
-	        emily.setType(newType);
-
-	        // Verify the changes
-	        assertEquals(emily.getName(), newName);
-	        assertEquals(emily.getBio(), newBio);
-	        assertEquals(emily.getType(), newType);
-		
-		
+	        engineerjob.setJobName("Deleted Job");
+	        assertEquals("Deleted Job", engineerjob.getJobName());
+	        engineerjob.setBody("this post has been deleted");
+	        assertEquals("this post has been deleted", engineerjob.getBody());
+	       
 	}
 
 }

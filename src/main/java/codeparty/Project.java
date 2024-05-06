@@ -1,5 +1,6 @@
 package codeparty;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import java.awt.Image;
@@ -11,7 +12,8 @@ public class Project extends Profile
 		this.owner = owner;
 		this.tagline = tagline;
 		this.repositoryLink = repositoryLink;
-
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
 	}
 	
 	Person owner;

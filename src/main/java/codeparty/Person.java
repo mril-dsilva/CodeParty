@@ -11,10 +11,12 @@ public class Person extends Profile
 	public Person(String id, String name, String bio, Experience currentCompany, ArrayList<Experience> experiences, PersonType type) {
 		super(id, name, bio);
 		// TODO Auto-generated constructor stub
-
 		this.currentCompany = currentCompany;
 		this.experiences = experiences;
 		this.type = type;
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
+		links.put(Project.class, new ArrayList<String>());
 	}
 
 	Experience currentCompany;

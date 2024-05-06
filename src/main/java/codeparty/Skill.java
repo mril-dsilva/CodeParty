@@ -1,5 +1,6 @@
 package codeparty;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import java.awt.Image;
@@ -12,6 +13,8 @@ public class Skill extends Profile
 		super(id, name, bio);
 		this.tagline = tagline;
 		// TODO Auto-generated constructor stub
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
 	}
 
 

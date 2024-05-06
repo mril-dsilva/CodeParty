@@ -1,5 +1,6 @@
 package codeparty;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class JobPosting extends Page
 		this.body = body;
 		this.datePosted = datePosted;
 		this.expiryDate = expiryDate;
-
+		links.put(Skill.class, new ArrayList<String>());
 		
 	}
 	/**

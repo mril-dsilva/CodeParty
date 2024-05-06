@@ -1,5 +1,6 @@
 package codeparty;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import java.awt.Image;
@@ -12,7 +13,8 @@ public class Company extends Profile
 	public Company(String id, String name, String bio, String tagline) {
 		super(id, name, bio);
 		this.tagline = tagline;
-	
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
 	}
 	
 	/**
