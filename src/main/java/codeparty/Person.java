@@ -47,5 +47,6 @@ public class Person extends Profile
         this.type = type;
     }
     
+    //haslink method
 
 }

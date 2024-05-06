@@ -71,8 +71,6 @@ class TestCases
 	        java.setTagline("New Java Tagline");
 	        assertEquals(java.getTagline(), "New Java Tagline");
 	        
-
-	        
 	        //Testing Company Creation
 	        assertEquals(autonomy.getName(), "Autonomy Technologies");
 	        assertEquals(autonomy.getBio(), "AI driven automobile tech company");
@@ -115,9 +113,24 @@ class TestCases
 	        emily.addEditor(emily.getId());
 	        emily.addEditor(john.getId());
 	        emily.removeEditor(john.getId());
+	        emily.addViewer(autonomy.getId());
+	        emily.addViewer(john.getId());
+	        emily.addViewer(buttonapp.getId());
+	        emily.addViewer(emily.getId());
+	        emily.removeViewer(buttonapp.getId());
 	        assertEquals(emily.getUsersCanEdit(), editpermissions);
+	        //adding links to emily
 	        emily.addLink(Project.class, buttonapp.getId());
+	        emily.addLink(Person.class, john.getId());
+	        emily.addLink(Skill.class, java.getId());
 	        emily.removeLink(Project.class, buttonapp.getId());
+	        //checked hasLinks method
+	        assertTrue(emily.hasLink(Person.class, john.getId()));
+	        assertFalse(emily.hasLink(Project.class, buttonapp.getId()));
+	        assertFalse(emily.hasLink(Company.class, autonomy.getId()));
+	        
+	        //how do i test if it is in it
+	        
 	        emily.setLinks(links);
 	        assertEquals(emily.getLinks(), links);
 	        

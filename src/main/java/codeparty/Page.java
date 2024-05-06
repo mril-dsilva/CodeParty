@@ -12,6 +12,7 @@ public abstract class Page
 	
 	protected Map<Class<?>, ArrayList<String>> links = new HashMap<>();
 	private ArrayList<String> usersCanEdit = new ArrayList<String>();
+	private ArrayList<String> usersCanView = new ArrayList<String>();
 	
 	
 	public void setID(String id) {
@@ -62,5 +63,22 @@ public abstract class Page
 	public void removeEditor(String ID) {
 		usersCanEdit.remove(ID);
 	}
-
+	
+	public void addViewer(String ID) {
+		usersCanView.add(ID);
+	}
+	
+	public void removeViewer(String ID) {
+		usersCanView.remove(ID);
+	}
+	
+	public boolean hasLink(Class<?> clas, String id) {
+	    if (links.containsKey(clas)) {
+	        ArrayList<String> ids = links.get(clas);
+	        if (ids.contains(id)) {
+	            return true; 
+	        }
+	    }
+	    return false; 
+	}
 }
