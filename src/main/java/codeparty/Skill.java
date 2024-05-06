@@ -8,8 +8,8 @@ public class Skill extends Profile
 {
     String tagline;
     
-    public Skill(String id, Image profilePhoto, Image banner, String name, String bio, String tagline) {
-		super(id, profilePhoto, banner, name, bio);
+    public Skill(String id, String name, String bio, String tagline) {
+		super(id, name, bio);
 		this.tagline = tagline;
 		// TODO Auto-generated constructor stub
 	}

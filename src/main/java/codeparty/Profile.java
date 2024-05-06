@@ -5,48 +5,16 @@ import java.awt.Image;
 
 public abstract class Profile extends Page
 {
-	public Profile(String id, Image profilePhoto, Image banner, String name, String bio) {
+	public Profile(String id, String name, String bio) {
 		super(id);
-		this.profilePhoto = profilePhoto;
-		this.banner = banner;
 		this.name = name;
 		this.bio = bio;
 		
 		// TODO Auto-generated constructor stub
 	}
 	
-	Image profilePhoto;
-	Image banner;
 	String name;
 	String bio;
-	
-	/**
-	 * @return the profilePhoto
-	 */
-	public Image getProfilePhoto() {
-		return profilePhoto;
-	}
-
-	/**
-	 * @param profilePhoto the profilePhoto to set
-	 */
-	public void setProfilePhoto(Image profilePhoto) {
-		this.profilePhoto = profilePhoto;
-	}
-
-	/**
-	 * @return the banner
-	 */
-	public Image getBanner() {
-		return banner;
-	}
-
-	/**
-	 * @param banner the banner to set
-	 */
-	public void setBanner(Image banner) {
-		this.banner = banner;
-	}
 
 	/**
 	 * @return the name

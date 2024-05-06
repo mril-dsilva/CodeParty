@@ -12,7 +12,6 @@ public abstract class Page
 	
 	protected Map<Class<?>, ArrayList<String>> links = new HashMap<>();
 	private ArrayList<String> usersCanEdit = new ArrayList<String>();
-	private ArrayList<String> usersCanView = new ArrayList<String>();
 	
 	
 	public void setID(String id) {
@@ -35,15 +34,6 @@ public abstract class Page
 	public void setUsersCanEdit(ArrayList<String> usersCanEdit) {
 		this.usersCanEdit = usersCanEdit;
 	}
-
-	public ArrayList<String> getUsersCanView() {
-		return usersCanView;
-	}
-
-	public void setUsersCanView(ArrayList<String> usersCanView) {
-		this.usersCanView = usersCanView;
-	}
-	
 
 	public String getId() {
 		return id;
@@ -72,32 +62,5 @@ public abstract class Page
 	public void removeEditor(String ID) {
 		usersCanEdit.remove(ID);
 	}
-	
-	public void addViewer(String ID) {
-		usersCanView.add(ID);
-	}
-	
-	public void removeViewer(String ID) {
-		usersCanView.remove(ID);
-	}
-	/*
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, links, usersCanEdit, usersCanView);
-	}
-	
-	/*
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Page other = (Page) obj;
-		return Objects.equals(id, other.id) && Objects.equals(links, other.links)
-				&& Objects.equals(usersCanEdit, other.usersCanEdit) && Objects.equals(usersCanView, other.usersCanView);
-	}
-	*/
+
 }

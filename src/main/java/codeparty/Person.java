@@ -8,8 +8,8 @@ import java.awt.Image;
 public class Person extends Profile
 {
 	
-	public Person(String id, Image profilePhoto, Image banner, String name, String bio, Experience currentCompany, ArrayList<Experience> experiences, PersonType type) {
-		super(id, profilePhoto, banner, name, bio);
+	public Person(String id, String name, String bio, Experience currentCompany, ArrayList<Experience> experiences, PersonType type) {
+		super(id, name, bio);
 		// TODO Auto-generated constructor stub
 
 		this.currentCompany = currentCompany;
@@ -21,14 +21,6 @@ public class Person extends Profile
     ArrayList<Experience> experiences;
     PersonType type;
     
-  
-    /**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-
     
     // Getter and setter for currentCompany
     public Experience getCurrentCompany() {

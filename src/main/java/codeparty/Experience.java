@@ -19,11 +19,16 @@ public class Experience
 		return id;
 	}
 	
+	
 	/**
 	 * @param company the company to set
 	 */
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	/**

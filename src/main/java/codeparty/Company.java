@@ -9,8 +9,8 @@ public class Company extends Profile
 	String tagline;
 	
 	
-	public Company(String id, Image profilePhoto, Image banner, String name, String bio, String tagline) {
-		super(id, profilePhoto, banner, name, bio);
+	public Company(String id, String name, String bio, String tagline) {
+		super(id, name, bio);
 		this.tagline = tagline;
 	
 	}

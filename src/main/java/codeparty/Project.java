@@ -6,8 +6,8 @@ import java.awt.Image;
 
 public class Project extends Profile
 {
-	public Project(String id, Image profilePhoto, Image banner, String name, String bio, Person owner, String tagline, String repositoryLink) {
-		super(id, profilePhoto, banner, name, bio);
+	public Project(String id, String name, String bio, Person owner, String tagline, String repositoryLink) {
+		super(id,name, bio);
 		this.owner = owner;
 		this.tagline = tagline;
 		this.repositoryLink = repositoryLink;
