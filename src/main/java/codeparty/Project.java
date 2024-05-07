@@ -1,9 +1,6 @@
 package codeparty;
 
 import java.util.ArrayList;
-import java.util.UUID;
-
-import java.awt.Image;
 
 public class Project extends Profile
 {

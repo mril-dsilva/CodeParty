@@ -2,7 +2,6 @@ package codeparty;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.UUID;
 
 public class JobPosting extends Page
 {

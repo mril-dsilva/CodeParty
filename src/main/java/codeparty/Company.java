@@ -1,9 +1,6 @@
 package codeparty;
 
 import java.util.ArrayList;
-import java.util.UUID;
-
-import java.awt.Image;
 
 public class Company extends Profile
 {
@@ -23,7 +20,7 @@ public class Company extends Profile
 	public String getId() {
 		return id;
 	}
-
+	
 
 	/**
 	 * @return the tagline
@@ -38,7 +35,5 @@ public class Company extends Profile
 	public void setTagline(String tagline) {
 		this.tagline = tagline;
 	}
-	
-	
 	
 }

@@ -1,8 +1,5 @@
 package codeparty;
 
-import java.util.UUID;
-import java.awt.Image;
-
 public abstract class Profile extends Page
 {
 	public Profile(String id, String name, String bio) {

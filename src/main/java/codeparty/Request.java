@@ -1,7 +1,6 @@
 package codeparty;
 
 import java.util.GregorianCalendar;
-import java.util.UUID;
 
 public class Request
 {

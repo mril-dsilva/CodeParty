@@ -15,7 +15,7 @@ import codeparty.*;
 
 
 
-class TestCases
+class UnitTestCases
 {
 	private Skill java;
 	private Company autonomy;
