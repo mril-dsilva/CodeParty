@@ -14,6 +14,7 @@ public class JobRecommender {
 	{
 		ArrayList<JobPosting> recommendedjobs = new ArrayList<JobPosting>();
 		
+		
 		/*
 		Create a recommendedJobs ArrayList
 		Retrieve all JobPostings from server

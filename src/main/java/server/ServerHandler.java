@@ -9,26 +9,28 @@ import org.springframework.web.client.RestClient;
 
 import codeparty.Company;
 import codeparty.Experience;
+import codeparty.JobPosting;
 import codeparty.Person;
 import codeparty.PersonType;
 import codeparty.Project;
 import codeparty.Skill;
 
-public interface ServerHandler {
+public class ServerHandler {
 	
-	RestClient client = RestClient.create();
-	String uriBase = "http://localhost:9000/v1";
-	String teamName = "linkedinfraudsters";
+	static RestClient client = RestClient.create();
+	static String uriBase = "http://localhost:9000/v1";
+	static String teamName = "linkedinfraudsters";
+
 	
 	public record RDesc(String request, String description, String location) {}; 
 	public record PersonResult(String request, String description, String location, Person data) {};
 	public record SkillResult(String request, String description, String location, Skill data) {};
 	public record CompanyResult(String request, String description, String location, Company data) {};
 	public record ProjectResult(String request, String description, String location, Project data) {};
-	
+	public record JobPostingResult(String request, String description, String location, JobPosting data) {};
 	
 	// Create TEAM - linkedinfraudsters
-	public static void createTeam(RestClient client) { //check the parameters here
+	public static void createTeam() { //check the parameters here
 		
 		String teamDesc = "cool team";
 		String teamLocation = uriBase + "/" + teamName;
@@ -53,7 +55,7 @@ public interface ServerHandler {
 	}
 	
 	// Create PAGES (individual)
-	public static void createPages(RestClient client,  String className) {
+	public static void createPages(String className) {
 		String classLocation = uriBase + "/" + teamName + "/" + className;
 		String classDesc = className + "added to the server";
 		RDesc pageType = new RDesc(className, classDesc, classLocation);
@@ -74,7 +76,7 @@ public interface ServerHandler {
 	public static void createAllPages(ArrayList<String> pages) {
 		
 		for (String page : pages) {
-	        createPages(client, page);
+	        createPages(page);
 	    }
 		
 	}
@@ -152,8 +154,26 @@ public interface ServerHandler {
 		
 	}
 	
+	//POST JobPosting object
+	public static void putJobPostingObject(JobPosting P) {
+		
+		String objLocation = uriBase + "/" + teamName + "/" + "JobPosting" + "/" + P.getId();
+		String x  = P.getJobName();
+		RDesc pageType = new RDesc(x, P.getBody(), objLocation);
+		
+		// Check posting page class typ
+		String post_result = client.post()
+			.uri(objLocation)
+			.contentType(MediaType.APPLICATION_JSON)
+			.body(pageType)
+			.retrieve()
+			.body(String.class);
+		
+		System.out.println(post_result);
+	}
+	
 	//GET OBJECTS FROM SERVER
-	public static void getPersonObject(String id) { // Person
+	public static Person getPersonObject(String id) { // Person
 		
 		PersonResult result = client.get()
 				.uri(uriBase + "/" + teamName + "/" + "Person" + "/" + id)
@@ -161,6 +181,7 @@ public interface ServerHandler {
 				.body(PersonResult.class);
 		
 		System.out.println(result.data.getName());
+		return result.data;
 		
 	}
 	public static void getSkillObject(String id) { //Skill
@@ -196,32 +217,48 @@ public interface ServerHandler {
 		
 	}
 	
+	public static void getJobPostingObject(String id) { //JobPosting
+		
+		JobPostingResult result = client.get()
+				.uri(uriBase + "/" + teamName + "/" + "JobPosting" + "/" + id)
+				.retrieve()
+				.body(JobPostingResult.class);
+		
+		System.out.println(result.data.getJobName());
+		
+	}
+	
 	
 	public static void main(String args[]) {
-		
-		createTeam(client);
+		/*
+		createTeam();
 		ArrayList<String> pagesList = new ArrayList<String>();
         pagesList.add("Person");
         pagesList.add("Skill");
         pagesList.add("Company");
         pagesList.add("Project");
+        pagesList.add("JobPosting");
         
         createAllPages(pagesList);
         Person emily = new Person();
         Skill java = new Skill();
         Company auto = new Company();
         Project app = new Project();
+        JobPosting job = new JobPosting();
         
         putPersonObject(emily);
+        putPersonObject(new Person());
         putSkillObject(java);
         putCompanyObject(auto);
         putProjectObject(app);
+        putJobPostingObject(job);
         
         getPersonObject(emily.getId());
         getSkillObject(java.getId());
         getCompanyObject(auto.getId());
         getProjectObject(app.getId());
-        
+        getJobPostingObject(job.getId());
+        */
 	}
 	
 	//just feed page objects to the jackson in put methods - done

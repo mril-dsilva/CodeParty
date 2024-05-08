@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import codeparty.*;
+import server.JobRecommendStrategy;
 
 
 
@@ -52,7 +53,7 @@ class UnitTestCases
 		buttonapp = new Project(UUID.randomUUID().toString(), "Button App", "You guessed it. This is an app with a button.", emily, "A button to solve all your problems", "githublink.com");
 		
 		//Creating a job posting
-		engineerjob = new JobPosting(UUID.randomUUID().toString(), autonomy, emily, "Engineer Job", "Apply to be an Engineer", startDate,  endDate);
+		engineerjob = new JobPosting(UUID.randomUUID().toString(), autonomy.getId(), emily.getId(), "Engineer Job", "Apply to be an Engineer", startDate,  endDate, JobRecommendStrategy.EVERYONE);
 		//Creating a friend request
 		//request1 = new Request(UUID.randomUUID().toString(), "Let's work together!", emily, startDate);
 		//Creating person 2
@@ -96,6 +97,24 @@ class UnitTestCases
 	        emilyexp.setCompanyID(autonomy.getId());
 	        emilyexp.setId("experience#1234");
 	        assertEquals(emilyexp.getId(), "experience#1234");
+	        
+	        // Testing Job Creation
+	        assertNotNull(engineerjob.getId());
+	        engineerjob.setCompanyID(autonomy.getId());
+	        assertEquals(autonomy.getId(), engineerjob.getCompanyID());
+	        assertEquals(emily.getId(), engineerjob.getContactID());
+	        engineerjob.setContactID(john.getId());
+	        assertEquals(john.getId(), engineerjob.getContactID());
+	        assertEquals("Engineer Job", engineerjob.getJobName());
+	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
+	        engineerjob.setDatePosted(startDate);
+	        engineerjob.setExpiryDate(endDate);
+	        assertEquals(startDate, engineerjob.getDatePosted());
+	        assertEquals(endDate, engineerjob.getExpiryDate());
+	        engineerjob.setJobName("Deleted Job");
+	        assertEquals("Deleted Job", engineerjob.getJobName());
+	        engineerjob.setBody("this post has been deleted");
+	        assertEquals("this post has been deleted", engineerjob.getBody());
 
 	        //Testing Person Creation
 	        assertEquals(emily.getName(), "Emily Chen");
@@ -174,23 +193,7 @@ class UnitTestCases
 //	        assertEquals(john, request1.getPerson());
 //	        assertEquals(endDate, request1.getDateCreated()); 
 	        
-	        // Testing Job Creation
-	        assertNotNull(engineerjob.getId());
-	        engineerjob.setCompany(autonomy);
-	        assertEquals(autonomy, engineerjob.getCompany());
-	        assertEquals(emily, engineerjob.getContact());
-	        engineerjob.setContact(john);
-	        assertEquals(john, engineerjob.getContact());
-	        assertEquals("Engineer Job", engineerjob.getJobName());
-	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
-	        engineerjob.setDatePosted(startDate);
-	        engineerjob.setExpiryDate(endDate);
-	        assertEquals(startDate, engineerjob.getDatePosted());
-	        assertEquals(endDate, engineerjob.getExpiryDate());
-	        engineerjob.setJobName("Deleted Job");
-	        assertEquals("Deleted Job", engineerjob.getJobName());
-	        engineerjob.setBody("this post has been deleted");
-	        assertEquals("this post has been deleted", engineerjob.getBody());
+
 	       
 	}
 

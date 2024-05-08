@@ -2,32 +2,52 @@ package codeparty;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.UUID;
+
+import server.JobRecommendStrategy;
 
 public class JobPosting extends Page
 {
 	String id;
-	Company company;
-	Person contact;
+	String companyID;
+	String contactID;
 	String jobName;
 	String body;
 	GregorianCalendar datePosted;
 	GregorianCalendar expiryDate;
+	JobRecommendStrategy strat;
 
 	
-	public JobPosting(String id, Company company, Person contact, String jobName, String body, GregorianCalendar datePosted,  
-			GregorianCalendar expiryDate) 
+	public JobPosting(String id, String companyID, String contactID, String jobName, String body, GregorianCalendar datePosted,  
+			GregorianCalendar expiryDate, JobRecommendStrategy strat) 
 	{
 		super(id);
 		this.id = id;
-		this.company = company;
-		this.contact = contact;
+		this.companyID = companyID;
+		this.contactID = contactID;
 		this.jobName = jobName;
 		this.body = body;
 		this.datePosted = datePosted;
 		this.expiryDate = expiryDate;
+		this.strat = strat;
 		links.put(Skill.class, new ArrayList<String>());
 		
 	}
+	
+	public JobPosting() {
+		super();
+		this.id = UUID.randomUUID().toString();
+		this.companyID = UUID.randomUUID().toString();
+		this.contactID = UUID.randomUUID().toString();
+		this.jobName = "Engineer";
+		this.body = "Engineer Products, what else!";
+		this.datePosted = new GregorianCalendar();
+		this.expiryDate = new GregorianCalendar();
+		// TODO Auto-generated constructor stub
+		links.put(Skill.class, new ArrayList<String>());
+		this.strat = JobRecommendStrategy.EVERYONE;
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -39,29 +59,29 @@ public class JobPosting extends Page
 	/**
 	 * @return the company
 	 */
-	public Company getCompany() {
-		return company;
+	public String getCompanyID() {
+		return companyID;
 	}
 
 	/**
 	 * @param company the company to set
 	 */
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyID(String companyID) {
+		this.companyID = companyID;
 	}
 
 	/**
 	 * @return the contact
 	 */
-	public Person getContact() {
-		return contact;
+	public String getContactID() {
+		return contactID;
 	}
 
 	/**
 	 * @param contact the contact to set
 	 */
-	public void setContact(Person contact) {
-		this.contact = contact;
+	public void setContactID(String contactID) {
+		this.contactID = contactID;
 	}
 
 	/**
