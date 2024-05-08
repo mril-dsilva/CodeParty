@@ -12,6 +12,7 @@ public class Company extends Profile
 		this.tagline = tagline;
 		links.put(Person.class, new ArrayList<String>());
 		links.put(Skill.class, new ArrayList<String>());
+		links.put(JobPosting.class, new ArrayList<String>());
 	}
 	
 	/**
@@ -21,8 +22,17 @@ public class Company extends Profile
 		return id;
 	}
 	
-
+	public Company() {
+		super();
+		tagline = "default tagline!";
+		name = "THE BORING COMPANY";
+		// TODO Auto-generated constructor stub
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
+		links.put(JobPosting.class, new ArrayList<String>());		
+	}
 	/**
+	 * 
 	 * @return the tagline
 	 */
 	public String getTagline() {

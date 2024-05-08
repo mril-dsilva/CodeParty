@@ -15,7 +15,16 @@ public class Person extends Profile
 		links.put(Skill.class, new ArrayList<String>());
 		links.put(Project.class, new ArrayList<String>());
 	}
-
+	
+	public Person() {
+		super();
+		currentCompany = new Experience();
+		type = PersonType.BASE;
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
+		links.put(Project.class, new ArrayList<String>());
+	}
+	
 	Experience currentCompany;
     ArrayList<Experience> experiences;
     PersonType type;
@@ -26,7 +35,11 @@ public class Person extends Profile
         return currentCompany;
     }
 
-    public void setCurrentCompany(Experience currentCompany) {
+    public void setExperiences(ArrayList<Experience> experiences) {
+		this.experiences = experiences;
+	}
+
+	public void setCurrentCompany(Experience currentCompany) {
         this.currentCompany = currentCompany;
     }
 

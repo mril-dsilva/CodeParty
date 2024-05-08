@@ -14,7 +14,14 @@ public class Skill extends Profile
 		links.put(Skill.class, new ArrayList<String>());
 	}
 
-
+	public Skill() {
+		super();
+		name = "JAVA";
+		tagline = "Skill tagline!";
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
+	}
+	
     // Getter and setter for tagline
     public String getTagline() {
         return tagline;

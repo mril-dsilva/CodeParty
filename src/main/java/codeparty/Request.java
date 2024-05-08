@@ -2,6 +2,7 @@ package codeparty;
 
 import java.util.GregorianCalendar;
 
+//REDUNDANT MODEL FILE = TO DELETE SOON
 public class Request
 {
 	String id;

@@ -7,5 +7,7 @@ public abstract class JobRecommenderCommand {
 
 	public void recommendJob(JobPosting job, Person person, ServerHandler S ) {
 		
+		
+		
 	}
 }

@@ -1,14 +1,15 @@
 package codeparty;
 
 import java.util.GregorianCalendar;
+import java.util.UUID;
 
 public class Experience
 {
 	/**
 	 * @return the company
 	 */
-	public Company getCompany() {
-		return company;
+	public String getCompanyID() {
+		return companyID;
 	}
 	
 	/**
@@ -22,8 +23,8 @@ public class Experience
 	/**
 	 * @param company the company to set
 	 */
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyID(String company) {
+		this.companyID = company;
 	}
 
 	public void setId(String id) {
@@ -87,20 +88,29 @@ public class Experience
 	}
 
 	String id;
-	Company company;
+	String companyID;
 	String jobTitle;
 	GregorianCalendar startDate;
 	GregorianCalendar endDate;
 	String description;
 	
-	public Experience(String id, Company company, String jobTitle, GregorianCalendar startDate, GregorianCalendar endDate,
+	public Experience(String id, String company, String jobTitle, GregorianCalendar startDate, GregorianCalendar endDate,
 			String description) {
 		this.id = id;
-		this.company = company;
+		this.companyID = company;
 		this.jobTitle = jobTitle;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.description = description;
+	}
+	
+	public Experience() {
+		this.id = UUID.randomUUID().toString();
+		this.companyID = "defualt company";
+		this.jobTitle = "Software Engineer";
+		this.startDate = new GregorianCalendar();
+		this.endDate = new GregorianCalendar();
+		this.description = "Man";
 	}
 	
 	

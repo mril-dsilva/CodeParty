@@ -3,6 +3,7 @@ package codeparty;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public abstract class Page 
 {
@@ -26,7 +27,12 @@ public abstract class Page
     	this.id = id;
     }
     
-    public ArrayList<String> getUsersCanEdit() {
+	public Page() {
+		super();
+		this.id = UUID.randomUUID().toString();
+	}
+    
+	public ArrayList<String> getUsersCanEdit() {
 		return usersCanEdit;
 	}
 

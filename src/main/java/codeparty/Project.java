@@ -13,6 +13,15 @@ public class Project extends Profile
 		links.put(Skill.class, new ArrayList<String>());
 	}
 	
+	public Project() {
+		super();
+		name = "button APP";
+		tagline = "default tagline!";
+		repositoryLink = "google.com";
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	Person owner;
 	String tagline;
 	String repositoryLink;

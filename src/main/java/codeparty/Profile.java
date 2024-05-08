@@ -9,7 +9,13 @@ public abstract class Profile extends Page
 		
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public Profile() {
+		super();
+		name = "John Doe";
+		bio = "default bio";
+	}
+
 	String name;
 	String bio;
 

@@ -24,7 +24,7 @@ class UnitTestCases
 	private Person john;
 	private Project buttonapp;
 	private JobPosting engineerjob;
-	private Request request1;
+	//private Request request1;
 	GregorianCalendar startDate = new GregorianCalendar(2020, 0, 1); 
     GregorianCalendar endDate = new GregorianCalendar(2022, 11, 31); 
     Image profile = null; 
@@ -44,7 +44,7 @@ class UnitTestCases
 		//Creating a Company
 		autonomy = new Company(UUID.randomUUID().toString(),"Autonomy Technologies", "AI driven automobile tech company", "Bleeding Edge Automobile Solutions");
 		//Creating an Experience
-		emilyexp = new Experience(UUID.randomUUID().toString(), autonomy, "Software Engineer",startDate,endDate, "Solved problems with code!");
+		emilyexp = new Experience(UUID.randomUUID().toString(), autonomy.getId(), "Software Engineer",startDate,endDate, "Solved problems with code!");
 		experiences.add(emilyexp);
 		//Creating a Person 
 		emily = new Person(UUID.randomUUID().toString(),"Emily Chen", "Gamer, and Computer Science major at Center College", null, experiences, PersonType.BASE);
@@ -54,11 +54,10 @@ class UnitTestCases
 		//Creating a job posting
 		engineerjob = new JobPosting(UUID.randomUUID().toString(), autonomy, emily, "Engineer Job", "Apply to be an Engineer", startDate,  endDate);
 		//Creating a friend request
-		request1 = new Request(UUID.randomUUID().toString(), "Let's work together!", emily, startDate);
+		//request1 = new Request(UUID.randomUUID().toString(), "Let's work together!", emily, startDate);
 		//Creating person 2
 		john = new Person(UUID.randomUUID().toString(),"John Chen", "Gamer, and Politics major at Center College", emilyexp, experiences, PersonType.BASE);
 	
-		
 	}
 
 	@Test
@@ -82,8 +81,8 @@ class UnitTestCases
 	        System.out.println(X);
 
 	        //Testing Experience Creation
-	        emilyexp.setCompany(autonomy);
-	        assertEquals(emilyexp.getCompany(), autonomy);
+	        emilyexp.setCompanyID(autonomy.getId());
+	        assertEquals(emilyexp.getCompanyID(), autonomy.getId());
 	        assertEquals(emilyexp.getJobTitle(), "Software Engineer");
 	        emilyexp.setStartDate(startDate);
 	        emilyexp.setEndDate(endDate);
@@ -94,7 +93,7 @@ class UnitTestCases
 	        assertEquals(emilyexp.getDescription(), "New description testing!");
 	        emilyexp.setJobTitle("Software Developer");
 	        assertEquals(emilyexp.getJobTitle(), "Software Developer");
-	        emilyexp.setCompany(autonomy);
+	        emilyexp.setCompanyID(autonomy.getId());
 	        emilyexp.setId("experience#1234");
 	        assertEquals(emilyexp.getId(), "experience#1234");
 
@@ -162,18 +161,18 @@ class UnitTestCases
 	        assertEquals(buttonapp.getTagline(), "New project Tagline");
 	        
 	        
-	        //Testing Request Creation
-	        assertNotNull(request1.getId());
-	        assertEquals("Let's work together!", request1.getMessage());
-	        assertEquals(emily, request1.getPerson());
-	        assertEquals(startDate, request1.getDateCreated());
-	        String newMessage = "New message";
-	        request1.setMessage(newMessage);
-	        assertEquals(newMessage, request1.getMessage());
-	        request1.setPerson(john);
-	        request1.setDateCreated(endDate);
-	        assertEquals(john, request1.getPerson());
-	        assertEquals(endDate, request1.getDateCreated());
+//	        //Testing Request Creation 
+//	        assertNotNull(request1.getId());
+//	        assertEquals("Let's work together!", request1.getMessage());
+//	        assertEquals(emily, request1.getPerson());
+//	        assertEquals(startDate, request1.getDateCreated());
+//	        String newMessage = "New message";
+//	        request1.setMessage(newMessage);
+//	        assertEquals(newMessage, request1.getMessage());
+//	        request1.setPerson(john);
+//	        request1.setDateCreated(endDate);
+//	        assertEquals(john, request1.getPerson());
+//	        assertEquals(endDate, request1.getDateCreated()); 
 	        
 	        // Testing Job Creation
 	        assertNotNull(engineerjob.getId());
