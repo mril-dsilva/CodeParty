@@ -175,7 +175,6 @@ class RestServerTest
 		jobRecommender.recommendJobs(boy);
 		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 FRIEND jobposting
         
-        //
 	}
 
 }
