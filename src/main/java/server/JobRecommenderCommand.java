@@ -3,11 +3,7 @@ package server;
 import codeparty.JobPosting;
 import codeparty.Person;
 
-public abstract class JobRecommenderCommand {
-
-	public void recommendJob(JobPosting job, Person person, ServerHandler S ) {
-		
-		
-		
-	}
+public interface JobRecommenderCommand {
+	boolean recommendJob(JobPosting job, Person person);
+	
 }

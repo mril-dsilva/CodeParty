@@ -23,14 +23,16 @@ public class ServerHandler {
 
 	
 	public record RDesc(String request, String description, String location) {}; 
+	public record RespDesc(String name, String description, String location) {}; 
 	public record PersonResult(String request, String description, String location, Person data) {};
 	public record SkillResult(String request, String description, String location, Skill data) {};
 	public record CompanyResult(String request, String description, String location, Company data) {};
 	public record ProjectResult(String request, String description, String location, Project data) {};
 	public record JobPostingResult(String request, String description, String location, JobPosting data) {};
+	public record JobPostingsResult(String request, String description, String location, ArrayList<RespDesc> data) {};
 	
 	// Create TEAM - linkedinfraudsters
-	public static void createTeam() { //check the parameters here
+	public static void createTeam() { //check the parameters here 
 		
 		String teamDesc = "cool team";
 		String teamLocation = uriBase + "/" + teamName;
@@ -139,14 +141,13 @@ public class ServerHandler {
 	public static void putSkillObject(Skill P) {
 		
 		String objLocation = uriBase + "/" + teamName + "/" + "Skill" + "/" + P.getId();
-		String x  = P.getName();
-		RDesc pageType = new RDesc(x, P.getBio(), objLocation);
+
 		
 		// Check posting page class typ
 		String post_result = client.post()
 			.uri(objLocation)
 			.contentType(MediaType.APPLICATION_JSON)
-			.body(pageType)
+			.body(P)
 			.retrieve()
 			.body(String.class);
 		
@@ -158,14 +159,12 @@ public class ServerHandler {
 	public static void putJobPostingObject(JobPosting P) {
 		
 		String objLocation = uriBase + "/" + teamName + "/" + "JobPosting" + "/" + P.getId();
-		String x  = P.getJobName();
-		RDesc pageType = new RDesc(x, P.getBody(), objLocation);
 		
 		// Check posting page class typ
 		String post_result = client.post()
 			.uri(objLocation)
 			.contentType(MediaType.APPLICATION_JSON)
-			.body(pageType)
+			.body(P)
 			.retrieve()
 			.body(String.class);
 		
@@ -184,7 +183,7 @@ public class ServerHandler {
 		return result.data;
 		
 	}
-	public static void getSkillObject(String id) { //Skill
+	public static Skill getSkillObject(String id) { //Skill
 		
 		SkillResult result = client.get()
 				.uri(uriBase + "/" + teamName + "/" + "Skill" + "/" + id)
@@ -192,10 +191,11 @@ public class ServerHandler {
 				.body(SkillResult.class);
 		
 		System.out.println(result.data.getName());
+		return result.data;
 		
 	}
 
-	public static void getProjectObject(String id) { //Project
+	public static Project getProjectObject(String id) { //Project
 		
 		ProjectResult result = client.get()
 				.uri(uriBase + "/" + teamName + "/" + "Project" + "/" + id)
@@ -203,10 +203,11 @@ public class ServerHandler {
 				.body(ProjectResult.class);
 		
 		System.out.println(result.data.getName());
+		return result.data;
 		
 	}
 	
-	public static void getCompanyObject(String id) { //Company
+	public static Company getCompanyObject(String id) { //Company
 		
 		CompanyResult result = client.get()
 				.uri(uriBase + "/" + teamName + "/" + "Company" + "/" + id)
@@ -214,10 +215,11 @@ public class ServerHandler {
 				.body(CompanyResult.class);
 		
 		System.out.println(result.data.getName());
+		return result.data;
 		
 	}
 	
-	public static void getJobPostingObject(String id) { //JobPosting
+	public static JobPosting getJobPostingObject(String id) { //JobPosting
 		
 		JobPostingResult result = client.get()
 				.uri(uriBase + "/" + teamName + "/" + "JobPosting" + "/" + id)
@@ -225,12 +227,131 @@ public class ServerHandler {
 				.body(JobPostingResult.class);
 		
 		System.out.println(result.data.getJobName());
+		return result.data;
+		
+	}
+	
+	//UPDATE Person Object
+	public static void updatePersonObject(Person P) {
+			
+			String objLocation = uriBase + "/" + teamName + "/" + "Person" + "/" + P.getId();
+			
+			// Check posting page class typ
+			String post_result = client.put()
+				.uri(objLocation)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(P)
+				.retrieve()
+				.body(String.class);
+					
+			System.out.println(post_result);
+			
+	}
+	
+	//UPDATE Skill Object
+	public static void updateSkillObject(Skill P) {
+			
+			String objLocation = uriBase + "/" + teamName + "/" + "Skill" + "/" + P.getId();
+			
+			// Check posting page class typ
+			String post_result = client.put()
+				.uri(objLocation)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(P)
+				.retrieve()
+				.body(String.class);
+					
+			System.out.println(post_result);
+			
+	}
+	
+	//UPDATE Company Object
+	public static void updateCompanyObject(Company P) {
+			
+			String objLocation = uriBase + "/" + teamName + "/" + "Company" + "/" + P.getId();
+			
+			// Check posting page class typ
+			String post_result = client.put()
+				.uri(objLocation)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(P)
+				.retrieve()
+				.body(String.class);
+					
+			System.out.println(post_result);
+			
+	}
+	
+	//UPDATE Project Object
+	public static void updateProjectObject(Project P) {
+			
+			String objLocation = uriBase + "/" + teamName + "/" + "Project" + "/" + P.getId();
+			
+			// Check posting page class typ
+			String post_result = client.put()
+				.uri(objLocation)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(P)
+				.retrieve()
+				.body(String.class);
+					
+			System.out.println(post_result);
+			
+	}
+	
+	//UPDATE Job Posting Object
+	public static void updateJobPostingObject(JobPosting P) {
+			
+			String objLocation = uriBase + "/" + teamName + "/" + "JobPosting" + "/" + P.getId();
+			
+			// Check posting page class typ
+			String post_result = client.put()
+				.uri(objLocation)
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(P)
+				.retrieve()
+				.body(String.class);
+					
+			System.out.println(post_result);
+			
+	}
+	
+	public static ArrayList<JobPosting> retrieveAllJobs() {
+		
+		ArrayList<JobPosting> alljobs = new ArrayList<JobPosting>();
+		
+		JobPostingsResult result = client.get()
+				.uri(uriBase + "/" + teamName + "/" + "JobPosting")
+				.retrieve()
+				.body(JobPostingsResult.class);
+		//System.out.println(result);
+		
+		for (int i = 0; i < result.data.size(); i++) {
+		    alljobs.add(getJobPostingObject(result.data.get(i).name));
+		}
+		
+		//String r = result.data.get(0).getId();
+		//System.out.println(r);
+		return alljobs;
+		
+	}
+	
+	public static void postAllJobs(ArrayList<JobPosting> jobs, Person P) {
+		P.resetLinks(JobPosting.class);
+		
+		for (JobPosting j: jobs) {
+			P.addLink(JobPosting.class, j.getId());
+		}
+		
+		updatePersonObject(P);
 		
 	}
 	
 	
+	
 	public static void main(String args[]) {
 		/*
+		// local testing 
 		createTeam();
 		ArrayList<String> pagesList = new ArrayList<String>();
         pagesList.add("Person");

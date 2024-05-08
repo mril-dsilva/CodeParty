@@ -22,6 +22,14 @@ public abstract class Page
 		this.links = links;
 	}
 	
+	public ArrayList<String> getUsersCanView() {
+		return usersCanView;
+	}
+
+	public void setUsersCanView(ArrayList<String> usersCanView) {
+		this.usersCanView = usersCanView;
+	}
+
 	// Constructor
     public Page(String id) {
     	this.id = id;
@@ -57,6 +65,11 @@ public abstract class Page
     // Method to remove a link from the page
     public void removeLink(Class<?> type, String id) {
     	links.get(type).remove(id);
+        // void
+    }
+    
+    public void resetLinks(Class<?> type) {
+    	links.get(type).clear();
         // void
     }
     

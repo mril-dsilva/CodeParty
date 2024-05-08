@@ -13,13 +13,10 @@ public class JobPosting extends Page
 	String contactID;
 	String jobName;
 	String body;
-	GregorianCalendar datePosted;
-	GregorianCalendar expiryDate;
 	JobRecommendStrategy strat;
 
 	
-	public JobPosting(String id, String companyID, String contactID, String jobName, String body, GregorianCalendar datePosted,  
-			GregorianCalendar expiryDate, JobRecommendStrategy strat) 
+	public JobPosting(String id, String companyID, String contactID, String jobName, String body, JobRecommendStrategy strat) 
 	{
 		super(id);
 		this.id = id;
@@ -27,8 +24,6 @@ public class JobPosting extends Page
 		this.contactID = contactID;
 		this.jobName = jobName;
 		this.body = body;
-		this.datePosted = datePosted;
-		this.expiryDate = expiryDate;
 		this.strat = strat;
 		links.put(Skill.class, new ArrayList<String>());
 		
@@ -36,16 +31,14 @@ public class JobPosting extends Page
 	
 	public JobPosting() {
 		super();
-		this.id = UUID.randomUUID().toString();
-		this.companyID = UUID.randomUUID().toString();
-		this.contactID = UUID.randomUUID().toString();
-		this.jobName = "Engineer";
-		this.body = "Engineer Products, what else!";
-		this.datePosted = new GregorianCalendar();
-		this.expiryDate = new GregorianCalendar();
+		id = UUID.randomUUID().toString();
+		companyID = UUID.randomUUID().toString();
+		contactID = UUID.randomUUID().toString();
+		jobName = "Engineer";
+		body = "Engineer Products, what else!";
 		// TODO Auto-generated constructor stub
 		links.put(Skill.class, new ArrayList<String>());
-		this.strat = JobRecommendStrategy.EVERYONE;
+		strat = JobRecommendStrategy.EVERYONE;
 	}
 	
 	/**
@@ -105,39 +98,19 @@ public class JobPosting extends Page
 		return body;
 	}
 
+	public JobRecommendStrategy getStrat() {
+		return strat;
+	}
+
+	public void setStrat(JobRecommendStrategy strat) {
+		this.strat = strat;
+	}
+
 	/**
 	 * @param body the body to set
 	 */
 	public void setBody(String body) {
 		this.body = body;
-	}
-
-	/**
-	 * @return the datePosted
-	 */
-	public GregorianCalendar getDatePosted() {
-		return datePosted;
-	}
-
-	/**
-	 * @param datePosted the datePosted to set
-	 */
-	public void setDatePosted(GregorianCalendar datePosted) {
-		this.datePosted = datePosted;
-	}
-
-	/**
-	 * @return the expiryDate
-	 */
-	public GregorianCalendar getExpiryDate() {
-		return expiryDate;
-	}
-
-	/**
-	 * @param expiryDate the expiryDate to set
-	 */
-	public void setExpiryDate(GregorianCalendar expiryDate) {
-		this.expiryDate = expiryDate;
 	}
 
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Project extends Profile
 {
-	public Project(String id, String name, String bio, Person owner, String tagline, String repositoryLink) {
+	public Project(String id, String name, String bio, String ownerID, String tagline, String repositoryLink) {
 		super(id,name, bio);
-		this.owner = owner;
+		this.ownerID = ownerID;
 		this.tagline = tagline;
 		this.repositoryLink = repositoryLink;
 		links.put(Person.class, new ArrayList<String>());
@@ -22,20 +22,20 @@ public class Project extends Profile
 	}
 	
 	
-	Person owner;
+	String ownerID;
 	String tagline;
 	String repositoryLink;
 	/**
 	 * @return the owner
 	 */
-	public Person getOwner() {
-		return owner;
+	public String getOwnerID() {
+		return ownerID;
 	}
 	/**
 	 * @param owner the owner to set
 	 */
-	public void setOwner(Person owner) {
-		this.owner = owner;
+	public void setOwnerID(String ownerID) {
+		this.ownerID = ownerID;
 	}
 	/**
 	 * @return the tagline

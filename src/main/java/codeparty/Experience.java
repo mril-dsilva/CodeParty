@@ -46,34 +46,6 @@ public class Experience
 	}
 
 	/**
-	 * @return the startDate
-	 */
-	public GregorianCalendar getStartDate() {
-		return startDate;
-	}
-
-	/**
-	 * @param startDate the startDate to set
-	 */
-	public void setStartDate(GregorianCalendar startDate) {
-		this.startDate = startDate;
-	}
-
-	/**
-	 * @return the endDate
-	 */
-	public GregorianCalendar getEndDate() {
-		return endDate;
-	}
-
-	/**
-	 * @param endDate the endDate to set
-	 */
-	public void setEndDate(GregorianCalendar endDate) {
-		this.endDate = endDate;
-	}
-
-	/**
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -90,17 +62,13 @@ public class Experience
 	String id;
 	String companyID;
 	String jobTitle;
-	GregorianCalendar startDate;
-	GregorianCalendar endDate;
 	String description;
 	
-	public Experience(String id, String company, String jobTitle, GregorianCalendar startDate, GregorianCalendar endDate,
+	public Experience(String id, String company, String jobTitle,
 			String description) {
 		this.id = id;
 		this.companyID = company;
 		this.jobTitle = jobTitle;
-		this.startDate = startDate;
-		this.endDate = endDate;
 		this.description = description;
 	}
 	
@@ -108,9 +76,7 @@ public class Experience
 		this.id = UUID.randomUUID().toString();
 		this.companyID = "defualt company";
 		this.jobTitle = "Software Engineer";
-		this.startDate = new GregorianCalendar();
-		this.endDate = new GregorianCalendar();
-		this.description = "Man";
+		this.description = "Random Experiences of a Soft eng";
 	}
 	
 	

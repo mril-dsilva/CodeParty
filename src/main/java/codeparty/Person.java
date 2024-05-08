@@ -14,15 +14,19 @@ public class Person extends Profile
 		links.put(Person.class, new ArrayList<String>());
 		links.put(Skill.class, new ArrayList<String>());
 		links.put(Project.class, new ArrayList<String>());
+		links.put(JobPosting.class, new ArrayList<String>());
 	}
 	
 	public Person() {
 		super();
 		currentCompany = new Experience();
+		experiences = new ArrayList<Experience>();
+		experiences.add(currentCompany);
 		type = PersonType.BASE;
 		links.put(Person.class, new ArrayList<String>());
 		links.put(Skill.class, new ArrayList<String>());
 		links.put(Project.class, new ArrayList<String>());
+		links.put(JobPosting.class, new ArrayList<String>());
 	}
 	
 	Experience currentCompany;

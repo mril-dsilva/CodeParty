@@ -26,8 +26,6 @@ class UnitTestCases
 	private Project buttonapp;
 	private JobPosting engineerjob;
 	//private Request request1;
-	GregorianCalendar startDate = new GregorianCalendar(2020, 0, 1); 
-    GregorianCalendar endDate = new GregorianCalendar(2022, 11, 31); 
     Image profile = null; 
 	Image banner = null;
 	
@@ -37,7 +35,7 @@ class UnitTestCases
 	Map<Class<?>, ArrayList<String>> links = new HashMap<>();
 	
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() throws Exception { 
 		
 		
 		//Creating a Skill
@@ -45,15 +43,15 @@ class UnitTestCases
 		//Creating a Company
 		autonomy = new Company(UUID.randomUUID().toString(),"Autonomy Technologies", "AI driven automobile tech company", "Bleeding Edge Automobile Solutions");
 		//Creating an Experience
-		emilyexp = new Experience(UUID.randomUUID().toString(), autonomy.getId(), "Software Engineer",startDate,endDate, "Solved problems with code!");
+		emilyexp = new Experience(UUID.randomUUID().toString(), autonomy.getId(), "Software Engineer","Solved problems with code!");
 		experiences.add(emilyexp);
 		//Creating a Person 
 		emily = new Person(UUID.randomUUID().toString(),"Emily Chen", "Gamer, and Computer Science major at Center College", null, experiences, PersonType.BASE);
 		//Creating a Project
-		buttonapp = new Project(UUID.randomUUID().toString(), "Button App", "You guessed it. This is an app with a button.", emily, "A button to solve all your problems", "githublink.com");
+		buttonapp = new Project(UUID.randomUUID().toString(), "Button App", "You guessed it. This is an app with a button.", emily.getId(), "A button to solve all your problems", "githublink.com");
 		
 		//Creating a job posting
-		engineerjob = new JobPosting(UUID.randomUUID().toString(), autonomy.getId(), emily.getId(), "Engineer Job", "Apply to be an Engineer", startDate,  endDate, JobRecommendStrategy.EVERYONE);
+		engineerjob = new JobPosting(UUID.randomUUID().toString(), autonomy.getId(), emily.getId(), "Engineer Job", "Apply to be an Engineer", JobRecommendStrategy.EVERYONE);
 		//Creating a friend request
 		//request1 = new Request(UUID.randomUUID().toString(), "Let's work together!", emily, startDate);
 		//Creating person 2
@@ -61,7 +59,7 @@ class UnitTestCases
 	
 	}
 
-	@Test
+	@Test 
 	void test() {
 	        
 			//Testing Skill Creation
@@ -85,10 +83,6 @@ class UnitTestCases
 	        emilyexp.setCompanyID(autonomy.getId());
 	        assertEquals(emilyexp.getCompanyID(), autonomy.getId());
 	        assertEquals(emilyexp.getJobTitle(), "Software Engineer");
-	        emilyexp.setStartDate(startDate);
-	        emilyexp.setEndDate(endDate);
-	        assertEquals(emilyexp.getStartDate(), new GregorianCalendar(2020, 0, 1));
-	        assertEquals(emilyexp.getEndDate(), new GregorianCalendar(2022, 11, 31));
 	        assertEquals(emilyexp.getDescription(), "Solved problems with code!");
 	        emilyexp.setDescription("New description testing!");
 	        assertEquals(emilyexp.getDescription(), "New description testing!");
@@ -107,14 +101,23 @@ class UnitTestCases
 	        assertEquals(john.getId(), engineerjob.getContactID());
 	        assertEquals("Engineer Job", engineerjob.getJobName());
 	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
-	        engineerjob.setDatePosted(startDate);
-	        engineerjob.setExpiryDate(endDate);
-	        assertEquals(startDate, engineerjob.getDatePosted());
-	        assertEquals(endDate, engineerjob.getExpiryDate());
 	        engineerjob.setJobName("Deleted Job");
 	        assertEquals("Deleted Job", engineerjob.getJobName());
 	        engineerjob.setBody("this post has been deleted");
 	        assertEquals("this post has been deleted", engineerjob.getBody());
+	        
+	        //Testing ProjectCreation
+	        assertEquals(buttonapp.getName(), "Button App");
+	        assertEquals(buttonapp.getBio(), "You guessed it. This is an app with a button.");
+	        assertEquals(buttonapp.getOwnerID(), emily.getId());
+	        assertEquals(buttonapp.getTagline(), "A button to solve all your problems");
+	        assertEquals(buttonapp.getRepositoryLink(), "githublink.com");
+	        buttonapp.setOwnerID(john.getId()); // changing owner of the project
+	        assertEquals(buttonapp.getOwnerID(), john.getId());
+	        buttonapp.setRepositoryLink("google.com");
+	        assertEquals(buttonapp.getRepositoryLink(), "google.com");
+	        buttonapp.setTagline("New project Tagline");
+	        assertEquals(buttonapp.getTagline(), "New project Tagline");
 
 	        //Testing Person Creation
 	        assertEquals(emily.getName(), "Emily Chen");
@@ -165,19 +168,6 @@ class UnitTestCases
 	        assertEquals(emily.getName(), newName);
 	        assertEquals(emily.getBio(), newBio);
 	        assertEquals(emily.getType(), newType);
-	        
-	        //Testing ProjectCreation
-	        assertEquals(buttonapp.getName(), "Button App");
-	        assertEquals(buttonapp.getBio(), "You guessed it. This is an app with a button.");
-	        assertEquals(buttonapp.getOwner(), emily);
-	        assertEquals(buttonapp.getTagline(), "A button to solve all your problems");
-	        assertEquals(buttonapp.getRepositoryLink(), "githublink.com");
-	        buttonapp.setOwner(john); // changing owner of the project
-	        assertEquals(buttonapp.getOwner(), john);
-	        buttonapp.setRepositoryLink("google.com");
-	        assertEquals(buttonapp.getRepositoryLink(), "google.com");
-	        buttonapp.setTagline("New project Tagline");
-	        assertEquals(buttonapp.getTagline(), "New project Tagline");
 	        
 	        
 //	        //Testing Request Creation 

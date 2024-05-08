@@ -3,10 +3,11 @@ package server;
 import codeparty.JobPosting;
 import codeparty.Person;
 
-public class JobRecommendEveryone extends JobRecommenderCommand {
+public class JobRecommendEveryone implements JobRecommenderCommand {
 	
-	public void recommendJob(JobPosting job, Person person, ServerHandler S ) {
-		
+	public boolean recommendJob(JobPosting job, Person person) {
+		//System.out.println("exec");
+		return true;
 	}
 	
 }
