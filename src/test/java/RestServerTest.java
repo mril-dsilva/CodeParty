@@ -159,7 +159,7 @@ class RestServerTest
         ServerHandler.putJobPostingObject(pythonskillJob);
         ServerHandler.putJobPostingObject(emilyfriendJob);
         
-        Person boy = new Person(); boy.setName("NEWMAN"); //make new person 
+        Person boy = new Person(); boy.setName("NEWMAN"); boy.setID("jobpostingtesterboy"); //make new person 
         ServerHandler.putPersonObject(boy);
         JobRecommender jobRecommender = new JobRecommender();
 		jobRecommender.recommendJobs(boy);
