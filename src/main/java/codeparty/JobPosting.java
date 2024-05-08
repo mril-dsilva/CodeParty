@@ -8,7 +8,6 @@ import server.JobRecommendStrategy;
 
 public class JobPosting extends Page
 {
-	String id;
 	String companyID;
 	String contactID;
 	String jobName;
@@ -19,7 +18,6 @@ public class JobPosting extends Page
 	public JobPosting(String id, String companyID, String contactID, String jobName, String body, JobRecommendStrategy strat) 
 	{
 		super(id);
-		this.id = id;
 		this.companyID = companyID;
 		this.contactID = contactID;
 		this.jobName = jobName;
@@ -31,7 +29,6 @@ public class JobPosting extends Page
 	
 	public JobPosting() {
 		super();
-		id = UUID.randomUUID().toString();
 		companyID = UUID.randomUUID().toString();
 		contactID = UUID.randomUUID().toString();
 		jobName = "Engineer";
@@ -40,14 +37,6 @@ public class JobPosting extends Page
 		links.put(Skill.class, new ArrayList<String>());
 		strat = JobRecommendStrategy.EVERYONE;
 	}
-	
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-
 
 	/**
 	 * @return the company

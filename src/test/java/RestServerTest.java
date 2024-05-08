@@ -170,10 +170,15 @@ class RestServerTest
 		jobRecommender.recommendJobs(boy);
 		assertEquals(boy.getLinks().get(JobPosting.class).size(), 3); // +1 skill jobposting 
 		
+		assertTrue(boy.hasLink(JobPosting.class, pythonskillJob.getId()));
+		assertFalse(boy.hasLink(JobPosting.class, emilyfriendJob.getId()));
+		
 		boy.addLink(Person.class, emily.getId()); //give him new Friend linked
 		ServerHandler.updatePersonObject(boy); 
 		jobRecommender.recommendJobs(boy);
 		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 friends jobposting
+		
+		assertTrue(boy.hasLink(JobPosting.class, emilyfriendJob.getId()));
         
         
 	}
