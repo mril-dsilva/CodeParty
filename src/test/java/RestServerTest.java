@@ -163,19 +163,19 @@ class RestServerTest
         ServerHandler.putPersonObject(boy);
         JobRecommender jobRecommender = new JobRecommender();
 		jobRecommender.recommendJobs(boy);
-		assertEquals(boy.getLinks().get(JobPosting.class).size(), 2); //(2 EVERYONE jobpostings exist)
+		assertEquals(boy.getLinks().get(JobPosting.class).size(), 2); //he has 2 EVERYONE job recommended
 		
-		boy.addLink(Skill.class, py.getId()); //give him new skill
+		boy.addLink(Skill.class, py.getId()); //give him new Skill linked
 		ServerHandler.updatePersonObject(boy); 
 		jobRecommender.recommendJobs(boy);
-		assertEquals(boy.getLinks().get(JobPosting.class).size(), 3); // +1 skill jobposting 
+		assertEquals(boy.getLinks().get(JobPosting.class).size(), 3); // +1 SKILL jobposting 
 		
 		boy.addLink(Person.class, emily.getId()); //give him new Friend linked
 		ServerHandler.updatePersonObject(boy); 
 		jobRecommender.recommendJobs(boy);
-		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 friends jobposting
+		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 FRIEND jobposting
         
-        
+        //
 	}
 
 }
