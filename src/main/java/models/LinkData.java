@@ -1,6 +1,6 @@
 package models;
 
-import models.pages.Page;
+import codeparty.Page;
 
 public class LinkData {
 

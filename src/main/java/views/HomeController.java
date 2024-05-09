@@ -3,10 +3,10 @@ package views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import models.ViewTransitionModelInterface;
-import models.pages.Company;
-import models.pages.JobPosting;
-import models.pages.Person;
-import models.pages.Skill;
+import codeparty.Company;
+import codeparty.JobPosting;
+import codeparty.Person;
+import codeparty.Skill;
 
 public class HomeController {
 

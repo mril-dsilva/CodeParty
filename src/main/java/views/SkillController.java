@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
-import models.pages.Person;
-import models.pages.Skill;
+import codeparty.Person;
+import codeparty.Skill;
 
 public class SkillController {
 
@@ -33,7 +33,7 @@ public class SkillController {
 
     @FXML
     void onEditButtonClick(ActionEvent event) {
-    	model.showSkillEdit(skill.getID());
+    	model.showSkillEdit(skill.getId());
     }
 
     @FXML

@@ -16,22 +16,7 @@ public abstract class Profile extends Page
 		bio = "default bio";
 	}
 
-	String name;
 	String bio;
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	/**
 	 * @return the bio

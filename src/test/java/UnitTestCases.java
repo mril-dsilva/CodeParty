@@ -99,10 +99,10 @@ class UnitTestCases
 	        assertEquals(emily.getId(), engineerjob.getContactID());
 	        engineerjob.setContactID(john.getId());
 	        assertEquals(john.getId(), engineerjob.getContactID());
-	        assertEquals("Engineer Job", engineerjob.getJobName());
+	        assertEquals("Engineer Job", engineerjob.getName());
 	        assertEquals("Apply to be an Engineer", engineerjob.getBody());
-	        engineerjob.setJobName("Deleted Job");
-	        assertEquals("Deleted Job", engineerjob.getJobName());
+	        engineerjob.setName("Deleted Job");
+	        assertEquals("Deleted Job", engineerjob.getName());
 	        engineerjob.setBody("this post has been deleted");
 	        assertEquals("this post has been deleted", engineerjob.getBody());
 	        
@@ -128,7 +128,7 @@ class UnitTestCases
 	        assertEquals(emily.getCurrentCompany(), emilyexp);
 	        experiences.add(emilyexp);
 	        assertEquals(emily.getExperiences(), experiences);
-	        emily.setID("person#1234");
+	        emily.setId("person#1234");
 	        assertEquals(emily.getId(), "person#1234");
 	        emily.setUsersCanEdit(editpermissions);
 	        emily.addEditor(emily.getId());

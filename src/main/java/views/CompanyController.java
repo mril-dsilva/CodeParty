@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
-import models.pages.Company;
-import models.pages.Person;
-import models.pages.Skill;
+import codeparty.Company;
+import codeparty.Person;
+import codeparty.Skill;
 
 public class CompanyController {
 
@@ -64,7 +64,7 @@ public class CompanyController {
 
     @FXML
     void onEditButtonClick(ActionEvent event) {
-    	model.showCompanyEdit(company.getID());
+    	model.showCompanyEdit(company.getId());
     }
 
     @FXML

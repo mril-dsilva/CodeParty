@@ -8,20 +8,29 @@ import java.util.UUID;
 public abstract class Page 
 {
 	String id;
+	String name;
 	
 	protected Map<Class<?>, ArrayList<String>> links = new HashMap<>();
 	private ArrayList<String> usersCanEdit = new ArrayList<String>();
 	private ArrayList<String> usersCanView = new ArrayList<String>();
-	
-	
-	public void setID(String id) {
-		this.id = id;
-	}
+
 	
 	public void setLinks(Map<Class<?>, ArrayList<String>> links) {
 		this.links = links;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public ArrayList<String> getUsersCanView() {
 		return usersCanView;
 	}

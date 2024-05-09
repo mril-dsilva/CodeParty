@@ -226,7 +226,7 @@ public class ServerHandler {
 				.retrieve()
 				.body(JobPostingResult.class);
 		
-		System.out.println(result.data.getJobName());
+		System.out.println(result.data.getName());
 		return result.data;
 		
 	}
@@ -303,7 +303,7 @@ public class ServerHandler {
 	public static void updateJobPostingObject(JobPosting P) {
 			
 			String objLocation = uriBase + "/" + teamName + "/" + "JobPosting" + "/" + P.getId();
-			
+			 
 			// Check posting page class typ
 			String post_result = client.put()
 				.uri(objLocation)
@@ -346,8 +346,6 @@ public class ServerHandler {
 		updatePersonObject(P);
 		
 	}
-	
-	
 	
 	public static void main(String args[]) {
 		/*

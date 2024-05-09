@@ -12,8 +12,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import main.Main;
-import models.pages.Page;
-import models.pages.Person;
+import codeparty.Page;
+import codeparty.Person;
 import views.CompanyController;
 import views.CompanyEditController;
 import views.HomeController;
@@ -39,7 +39,7 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 	
 	public void setFakeData(Map<String, Page> fakeData) {
 		this.fakeData = fakeData;
-	}
+	} 
 	
 	public void setMainView(BorderPane mainView) {
 		this.mainView = mainView;
@@ -237,8 +237,8 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
     	
     	ListModel listModel = new ListModel();
     	for(T page : pages) {
-    		listModel.addItem(new LinkData(page.getName(), page.getID(), type));
-    		System.out.println(page.getID());
+    		listModel.addItem(new LinkData(page.getName(), page.getId(), type));
+    		System.out.println(page.getId());
     	}
     	
     	this.showList(listModel);
@@ -265,7 +265,7 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		
 		ListModel listModel = new ListModel();
     	for(Page receivedPage : pages) {
-        	listModel.addItem(new LinkData(receivedPage.getName(), receivedPage.getID(), Person.class));
+        	listModel.addItem(new LinkData(receivedPage.getName(), receivedPage.getId(), Person.class));
     	}
     	
     	this.showList(listModel);

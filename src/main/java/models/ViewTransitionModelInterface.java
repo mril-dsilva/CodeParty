@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javafx.scene.layout.BorderPane;
-import models.pages.Page;
-import models.pages.Person;
+import codeparty.Page;
+import codeparty.Person;
 
 public interface ViewTransitionModelInterface {
 	public void setFakeData(Map<String, Page> fakeData);

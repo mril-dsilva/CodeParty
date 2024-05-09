@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
-import models.pages.Person;
-import models.pages.Skill;
+import codeparty.Person;
+import codeparty.Skill;
 
 	public class UserViewController {
 
@@ -62,7 +62,7 @@ import models.pages.Skill;
 
 	    @FXML
 	    void onEditButtonClick(ActionEvent event) {
-	    	model.showUserEdit(person.getID());
+	    	model.showUserEdit(person.getId());
 	    }
 
 	    @FXML

@@ -7,11 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import models.LinkData;
 import models.ViewTransitionModelInterface;
-import models.pages.Company;
-import models.pages.JobPosting;
-import models.pages.Page;
-import models.pages.Person;
-import models.pages.Skill;
+import codeparty.Company;
+import codeparty.JobPosting;
+import codeparty.Page;
+import codeparty.Person;
+import codeparty.Skill;
 
 public class LinkListCell extends ListCell<LinkData>{
 

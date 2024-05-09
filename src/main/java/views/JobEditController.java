@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
-import models.pages.JobPosting;
+import codeparty.JobPosting;
 
 public class JobEditController {
 
@@ -27,13 +27,13 @@ public class JobEditController {
     @FXML
     void onEditButtonClick(ActionEvent event) {
     	if(model.getObject(companyNameInput.getText()) != null) {
-    		job.setCompany(companyNameInput.getText());
+    		job.setCompanyID(companyNameInput.getText()); //FIX NEEDED HERE TO IMPLEMENT RESTSERVER
     	}
     		
     	job.setName(jobNameInput.getText());
     	job.setBody(jobDescriptionInput.getText());
     	
-    	model.showUser(job.getID());
+    	model.showUser(job.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {
@@ -44,7 +44,7 @@ public class JobEditController {
     	job = (JobPosting) model.getObject(ID);
     	
     	jobNameInput.setText(job.getName());
-    	companyNameInput.setText(job.getCompany());
+    	companyNameInput.setText(job.getCompanyID());
     	jobDescriptionInput.setText(job.getBody());
     }
 

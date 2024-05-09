@@ -3,6 +3,12 @@ package main;
 import java.util.HashMap;
 import java.util.Map;
 
+import codeparty.Company;
+import codeparty.Experience;
+import codeparty.JobPosting;
+import codeparty.Page;
+import codeparty.Person;
+import codeparty.Skill;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

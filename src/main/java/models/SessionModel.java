@@ -1,6 +1,6 @@
 package models;
 
-import models.pages.Person;
+import codeparty.Person;
 
 public class SessionModel {
 

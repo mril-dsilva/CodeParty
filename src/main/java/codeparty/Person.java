@@ -2,6 +2,10 @@ package codeparty;
 
 import java.util.ArrayList;
 
+import codeparty.Person;
+import codeparty.Project;
+import codeparty.Skill;
+
 public class Person extends Profile
 {
 	
@@ -27,6 +31,15 @@ public class Person extends Profile
 		links.put(Skill.class, new ArrayList<String>());
 		links.put(Project.class, new ArrayList<String>());
 		links.put(JobPosting.class, new ArrayList<String>());
+	}
+	
+	public Person(String id) {
+		super();
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
+		links.put(Project.class, new ArrayList<String>());
+		links.put(JobPosting.class, new ArrayList<String>());
+		// TODO Auto-generated constructor stub
 	}
 	
 	Experience currentCompany;

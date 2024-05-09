@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
-import models.pages.Company;
+import codeparty.Company;
 
 public class CompanyEditController {
 
@@ -30,7 +30,7 @@ public class CompanyEditController {
     	company.setName(nameText.getText());
     	company.setTagline(taglineText.getText());
     	
-    	model.showUser(company.getID());
+    	model.showUser(company.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {

@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
-import models.pages.Person;
+import codeparty.Person;
 
 public class UserEditController {
 
@@ -30,7 +30,7 @@ public class UserEditController {
     	person.setName(nameText.getText());
     	person.getCurrentCompany().setJobTitle(roleText.getText());
     	
-    	model.showUser(person.getID());
+    	model.showUser(person.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {

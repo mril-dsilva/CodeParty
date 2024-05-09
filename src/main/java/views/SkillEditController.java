@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
-import models.pages.Skill;
+import codeparty.Skill;
 
 public class SkillEditController {
 
@@ -30,7 +30,7 @@ public class SkillEditController {
     	skill.setName(nameText.getText());
     	skill.setTagline(taglineText.getText());
     	
-    	model.showUser(skill.getID());
+    	model.showUser(skill.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {

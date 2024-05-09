@@ -1,6 +1,6 @@
-/server/
 /META-INF/
 /codeparty/
-/models/
-/views/
 /main/
+/models/
+/server/
+/views/

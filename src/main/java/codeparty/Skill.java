@@ -2,6 +2,9 @@ package codeparty;
 
 import java.util.ArrayList;
 
+import codeparty.Person;
+import codeparty.Skill;
+
 public class Skill extends Profile
 {
     String tagline;
@@ -18,6 +21,13 @@ public class Skill extends Profile
 		super();
 		name = "JAVA";
 		tagline = "Skill tagline!";
+		links.put(Person.class, new ArrayList<String>());
+		links.put(Skill.class, new ArrayList<String>());
+	}
+	
+	public Skill(String id) {
+		super();
+		// TODO Auto-generated constructor stub
 		links.put(Person.class, new ArrayList<String>());
 		links.put(Skill.class, new ArrayList<String>());
 	}

@@ -131,27 +131,27 @@ class RestServerTest
         engineer.setContactID(emily.getId());
         ServerHandler.putJobPostingObject(engineer);
         JobPosting j = ServerHandler.getJobPostingObject(engineer.getId());
-        assertEquals("Engineer", j.getJobName());
+        assertEquals("Engineer", j.getName());
         assertEquals("Engineer Products, what else!", j.getBody());
         assertEquals(auto.getId(), j.getCompanyID());
         assertEquals(emily.getId(), j.getContactID());
         engineer.setCompanyID(John.getId());
-        engineer.setJobName("boring engineer");
+        engineer.setName("boring engineer");
         ServerHandler.updateJobPostingObject(engineer); //UPDATING OBJECT
         JobPosting jUpdated = ServerHandler.getJobPostingObject(engineer.getId()); //CHECKING UPDATES
-        assertEquals("boring engineer", jUpdated.getJobName());
+        assertEquals("boring engineer", jUpdated.getName());
         assertEquals(emily.getId(), jUpdated.getContactID());
         
         //NEW TESTS TO CHECK JOB RECOMMEND SYSTEM
-        JobPosting every1job = new JobPosting(); every1job.setJobName("every1job");
+        JobPosting every1job = new JobPosting(); every1job.setName("every1job");
         every1job.setStrat(JobRecommendStrategy.EVERYONE);
         
-        JobPosting pythonskillJob = new JobPosting(); pythonskillJob.setJobName("pythonskillJob");
+        JobPosting pythonskillJob = new JobPosting(); pythonskillJob.setName("pythonskillJob");
         pythonskillJob.setStrat(JobRecommendStrategy.SKILLS);
         Skill py = new Skill(); py.setName("python");
         pythonskillJob.addLink(Skill.class, py.getId());
         
-        JobPosting emilyfriendJob = new JobPosting(); emilyfriendJob.setJobName("emilyfriendJob");
+        JobPosting emilyfriendJob = new JobPosting(); emilyfriendJob.setName("emilyfriendJob");
         emilyfriendJob.setStrat(JobRecommendStrategy.FRIENDS);
         emilyfriendJob.setContactID(emily.getId());
         
@@ -159,21 +159,26 @@ class RestServerTest
         ServerHandler.putJobPostingObject(pythonskillJob);
         ServerHandler.putJobPostingObject(emilyfriendJob);
         
-        Person boy = new Person(); boy.setName("NEWMAN"); boy.setID("jobpostingtesterboy"); //make new person 
+        Person boy = new Person(); boy.setName("NEWMAN"); boy.setId("jobpostingtesterboy"); //make new person 
         ServerHandler.putPersonObject(boy);
         JobRecommender jobRecommender = new JobRecommender();
 		jobRecommender.recommendJobs(boy);
-		assertEquals(boy.getLinks().get(JobPosting.class).size(), 2); //he has 2 EVERYONE job recommended
+		assertEquals(boy.getLinks().get(JobPosting.class).size(), 2); //(2 EVERYONE jobpostings exist)
 		
-		boy.addLink(Skill.class, py.getId()); //give him new Skill linked
+		boy.addLink(Skill.class, py.getId()); //give him new skill
 		ServerHandler.updatePersonObject(boy); 
 		jobRecommender.recommendJobs(boy);
-		assertEquals(boy.getLinks().get(JobPosting.class).size(), 3); // +1 SKILL jobposting 
+		assertEquals(boy.getLinks().get(JobPosting.class).size(), 3); // +1 skill jobposting 
+		
+		assertTrue(boy.hasLink(JobPosting.class, pythonskillJob.getId()));
+		assertFalse(boy.hasLink(JobPosting.class, emilyfriendJob.getId()));
 		
 		boy.addLink(Person.class, emily.getId()); //give him new Friend linked
 		ServerHandler.updatePersonObject(boy); 
 		jobRecommender.recommendJobs(boy);
-		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 FRIEND jobposting
+		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 friends jobposting
+		
+		assertTrue(boy.hasLink(JobPosting.class, emilyfriendJob.getId()));
         
 	}
 

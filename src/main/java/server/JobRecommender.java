@@ -18,13 +18,12 @@ public class JobRecommender {
 		ArrayList<JobPosting> recommendedjobs = new ArrayList<JobPosting>();
 		
 		for (JobPosting j : jobs) {
-			System.out.println(j.getJobName());
+			System.out.println(j.getName());
 	        if (JobRecommend(j,P) == true) {
 	        	//System.out.println(JobRecommend(j,P));
 	        	
 	        	recommendedjobs.add(j);
 	        }
-	       
 	    }
 		
 		ServerHandler.postAllJobs(recommendedjobs,P);
@@ -50,4 +49,10 @@ public class JobRecommender {
 		}
 		return false;
 	}
+
+//
+//	private boolean JobRecommend(JobPosting j, Person p) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 }

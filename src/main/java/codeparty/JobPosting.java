@@ -4,25 +4,23 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
+import codeparty.Skill;
 import server.JobRecommendStrategy;
 
 public class JobPosting extends Page
 {
-	String id;
 	String companyID;
 	String contactID;
-	String jobName;
 	String body;
 	JobRecommendStrategy strat;
 
 	
-	public JobPosting(String id, String companyID, String contactID, String jobName, String body, JobRecommendStrategy strat) 
+	public JobPosting(String id, String companyID, String contactID, String name, String body, JobRecommendStrategy strat) 
 	{
 		super(id);
-		this.id = id;
 		this.companyID = companyID;
 		this.contactID = contactID;
-		this.jobName = jobName;
+		this.name = name;
 		this.body = body;
 		this.strat = strat;
 		links.put(Skill.class, new ArrayList<String>());
@@ -31,24 +29,20 @@ public class JobPosting extends Page
 	
 	public JobPosting() {
 		super();
-		id = UUID.randomUUID().toString();
 		companyID = UUID.randomUUID().toString();
-		contactID = UUID.randomUUID().toString();
-		jobName = "Engineer";
+		name = "Engineer";
 		body = "Engineer Products, what else!";
 		// TODO Auto-generated constructor stub
 		links.put(Skill.class, new ArrayList<String>());
 		strat = JobRecommendStrategy.EVERYONE;
 	}
 	
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
+	public JobPosting(String id, String companyID) {
+		super(id);
+		this.companyID = companyID;
+		// TODO Auto-generated constructor stub
+		links.put(Skill.class, new ArrayList<String>());
 	}
-
-
 	/**
 	 * @return the company
 	 */
@@ -80,15 +74,15 @@ public class JobPosting extends Page
 	/**
 	 * @return the jobName
 	 */
-	public String getJobName() {
-		return jobName;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param jobName the jobName to set
+	 * @param name the jobName to set
 	 */
-	public void setJobName(String jobName) {
-		this.jobName = jobName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
