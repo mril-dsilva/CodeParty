@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
+import server.ServerHandler;
 import codeparty.Skill;
 
 public class SkillEditController {
@@ -30,6 +31,7 @@ public class SkillEditController {
     	skill.setName(nameText.getText());
     	skill.setTagline(taglineText.getText());
     	
+    	ServerHandler.updateSkillObject(skill);
     	model.showUser(skill.getId());
     }
     
@@ -38,7 +40,7 @@ public class SkillEditController {
     }
     
     public void populateSkill(String ID) {
-    	skill = (Skill) model.getObject(ID);
+    	skill = ServerHandler.getSkillObject(ID);
     	
     	nameText.setText(skill.getName());
     	taglineText.setText(skill.getTagline());

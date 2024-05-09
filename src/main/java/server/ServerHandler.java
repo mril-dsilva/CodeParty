@@ -29,7 +29,7 @@ public class ServerHandler {
 	public record CompanyResult(String request, String description, String location, Company data) {};
 	public record ProjectResult(String request, String description, String location, Project data) {};
 	public record JobPostingResult(String request, String description, String location, JobPosting data) {};
-	public record JobPostingsResult(String request, String description, String location, ArrayList<RespDesc> data) {};
+	public record GetAllResult(String request, String description, String location, ArrayList<RespDesc> data) {};
 	
 	// Create TEAM - linkedinfraudsters
 	public static void createTeam() { //check the parameters here 
@@ -315,15 +315,15 @@ public class ServerHandler {
 			System.out.println(post_result);
 			
 	}
-	
+	//RETREIVE ALL JOBS
 	public static ArrayList<JobPosting> retrieveAllJobs() {
 		
 		ArrayList<JobPosting> alljobs = new ArrayList<JobPosting>();
 		
-		JobPostingsResult result = client.get()
+		GetAllResult result = client.get()
 				.uri(uriBase + "/" + teamName + "/" + "JobPosting")
 				.retrieve()
-				.body(JobPostingsResult.class);
+				.body(GetAllResult.class);
 		//System.out.println(result);
 		
 		for (int i = 0; i < result.data.size(); i++) {
@@ -335,6 +335,90 @@ public class ServerHandler {
 		return alljobs;
 		
 	}
+	
+	//RETREIVE ALL PERSONS
+		public static ArrayList<Person> retrieveAllPersons() {
+			
+			ArrayList<Person> allpersons = new ArrayList<Person>();
+			
+			GetAllResult result = client.get()
+					.uri(uriBase + "/" + teamName + "/" + "Person")
+					.retrieve()
+					.body(GetAllResult.class);
+			//System.out.println(result);
+			
+			for (int i = 0; i < result.data.size(); i++) {
+			    allpersons.add(getPersonObject(result.data.get(i).name));
+			}
+			
+			//String r = result.data.get(0).getId();
+			//System.out.println(r);
+			return allpersons;
+			
+		}
+		
+		//RETREIVE ALL SkillS
+		public static ArrayList<Skill> retrieveAllSkills() {
+			
+			ArrayList<Skill> allSkills = new ArrayList<Skill>();
+			
+			GetAllResult result = client.get()
+					.uri(uriBase + "/" + teamName + "/" + "Skill")
+					.retrieve()
+					.body(GetAllResult.class);
+			//System.out.println(result);
+			
+			for (int i = 0; i < result.data.size(); i++) {
+			    allSkills.add(getSkillObject(result.data.get(i).name));
+			}
+			
+			//String r = result.data.get(0).getId();
+			//System.out.println(r);
+			return allSkills;
+			
+		}
+		
+		//RETREIVE ALL ProjectS
+		public static ArrayList<Project> retrieveAllProjects() {
+			
+			ArrayList<Project> allProjects = new ArrayList<Project>();
+			
+			GetAllResult result = client.get()
+					.uri(uriBase + "/" + teamName + "/" + "Project")
+					.retrieve()
+					.body(GetAllResult.class);
+			//System.out.println(result);
+			
+			for (int i = 0; i < result.data.size(); i++) {
+			    allProjects.add(getProjectObject(result.data.get(i).name));
+			}
+			
+			//String r = result.data.get(0).getId();
+			//System.out.println(r);
+			return allProjects;
+			
+		}
+		
+		//RETREIVE ALL Company
+		public static ArrayList<Company> retrieveAllCompanys() {
+			
+			ArrayList<Company> allCompanys = new ArrayList<Company>();
+			
+			GetAllResult result = client.get()
+					.uri(uriBase + "/" + teamName + "/" + "Company")
+					.retrieve()
+					.body(GetAllResult.class);
+			//System.out.println(result);
+			
+			for (int i = 0; i < result.data.size(); i++) {
+			    allCompanys.add(getCompanyObject(result.data.get(i).name));
+			}
+			
+			//String r = result.data.get(0).getId();
+			//System.out.println(r);
+			return allCompanys;
+			
+		}
 	
 	public static void postAllJobs(ArrayList<JobPosting> jobs, Person P) {
 		P.resetLinks(JobPosting.class);

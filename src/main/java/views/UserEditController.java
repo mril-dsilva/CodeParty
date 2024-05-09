@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
+import server.ServerHandler;
 import codeparty.Person;
 
 public class UserEditController {
@@ -30,6 +31,7 @@ public class UserEditController {
     	person.setName(nameText.getText());
     	person.getCurrentCompany().setJobTitle(roleText.getText());
     	
+    	ServerHandler.updatePersonObject(person);
     	model.showUser(person.getId());
     }
     
@@ -38,7 +40,7 @@ public class UserEditController {
     }
     
     public void populateUser(String ID) {
-    	person = (Person) model.getObject(ID);
+    	person = ServerHandler.getPersonObject(ID);
     	
     	nameText.setText(person.getName());
     	roleText.setText(person.getCurrentCompany().getJobTitle());

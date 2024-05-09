@@ -29,8 +29,7 @@ public class LoginController {
     	String password = passText.getText();
     	System.out.println("Transitioning");
     	if(model.attemptLogin(username, password)) {
-    		
-    		transitionModel.setCurrentUserID("123");
+    		transitionModel.setCurrentUserID(model.currUser());
     		transitionModel.showCurrentUserFromLogin();
     	}else {
     		

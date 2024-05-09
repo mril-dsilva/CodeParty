@@ -91,6 +91,14 @@
                <font>
                   <Font size="16.0" />
                </font></Button>
+            <Button fx:id="jobsListButton" layoutX="10.0" layoutY="317.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onJobsListClick" text="Recommended Jobs" textFill="#0120eb">
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </center>

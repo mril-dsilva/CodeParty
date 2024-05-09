@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
+import server.JobRecommender;
+import server.ServerHandler;
+import codeparty.JobPosting;
 import codeparty.Person;
 import codeparty.Skill;
 
@@ -19,7 +22,7 @@ import codeparty.Skill;
 		}
 		
 		public void populateUser(String id) {
-			person = (Person)model.getObject(id);
+			person = ServerHandler.getPersonObject(id);
 			
 			if(person!=null)
 			{
@@ -29,11 +32,17 @@ import codeparty.Skill;
 				
 				roleLabel.textProperty().set((person.getCurrentCompany()).getJobTitle());
 				
+			} else {
+				nameLabel.textProperty().set("Invalid User");
+				
+				bioLabel.textProperty().set("You have encountered an error where the Person object you are loading is NULL. Please try again, and ensure the user is in the server system.");
+				
+				roleLabel.textProperty().set("error");
 			}
 			
 			if(!model.canEdit(person)) {
 				editButton.setVisible(false);
-			}
+			} 
 			
 		}
 		
@@ -59,7 +68,10 @@ import codeparty.Skill;
 
 	    @FXML
 	    private Button skillsListButton;
-
+	    
+	    @FXML
+	    private Button jobsListButton;
+	    
 	    @FXML
 	    void onEditButtonClick(ActionEvent event) {
 	    	model.showUserEdit(person.getId());
@@ -69,7 +81,15 @@ import codeparty.Skill;
 	    void onFriendsListClick(ActionEvent event) {
 	    	model.showListOfLinks(person, Person.class);
 	    }
-
+	    
+	    @FXML
+	    void onJobsListClick(ActionEvent event) {
+	    	JobRecommender jobRecommender = new JobRecommender();
+			jobRecommender.recommendJobs(person);
+			
+			model.showListOfLinks(person, JobPosting.class);
+	    }
+	    
 	    @FXML
 	    void onProjectsListClick(ActionEvent event) {
 	    	

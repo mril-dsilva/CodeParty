@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
+import server.ServerHandler;
 import codeparty.Person;
 import codeparty.Skill;
 
@@ -60,7 +61,7 @@ public class SkillController {
 	}
 	
 	public void populateSkill(String id) {
-		skill = (Skill)model.getObject(id);
+		skill = ServerHandler.getSkillObject(id);
 		
 		if(skill!=null)
 		{
@@ -70,11 +71,17 @@ public class SkillController {
 			
 			taglineLabel.textProperty().set(skill.getTagline());
 			
+		} else {
+			skillNameLabel.textProperty().set("Invalid User");
+			
+			bioLabel.textProperty().set("You have encountered an error where the object you are loading is NULL. Please try again, and ensure the user is in the server system.");
+			
+			taglineLabel.textProperty().set("error");
 		}
 		
 		if(!model.canEdit(skill)) {
 			editButton.setVisible(false);
-		}
+		} 
 		
 	}
 

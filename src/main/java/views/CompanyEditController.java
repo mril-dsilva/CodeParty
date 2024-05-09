@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
+import server.ServerHandler;
 import codeparty.Company;
 
 public class CompanyEditController {
@@ -30,6 +31,7 @@ public class CompanyEditController {
     	company.setName(nameText.getText());
     	company.setTagline(taglineText.getText());
     	
+    	ServerHandler.updateCompanyObject(company);
     	model.showUser(company.getId());
     }
     
@@ -38,7 +40,7 @@ public class CompanyEditController {
     }
     
     public void populateCompany(String ID) {
-    	company = (Company) model.getObject(ID);
+    	ServerHandler.getCompanyObject(ID);
     	
     	nameText.setText(company.getName());
     	taglineText.setText(company.getTagline());

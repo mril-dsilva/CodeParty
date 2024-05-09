@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
+import server.ServerHandler;
 import codeparty.Company;
 import codeparty.JobPosting;
 
@@ -39,7 +40,7 @@ public class JobController {
 	}
 	
 	public void populateJob(String id) {
-		job = (JobPosting)model.getObject(id);
+		job = ServerHandler.getJobPostingObject(id);
 		
 		if(job!=null)
 		{
@@ -49,11 +50,17 @@ public class JobController {
 			
 			jobCompanyLabel.textProperty().set(((Company)model.getObject(job.getCompanyID())).getName()); //SEEMS LIKE THERE NEEDS TO BE A FIX HERE TO WORK WITH REStseRVER
 			
+		} else {
+			jobNameLabel.textProperty().set("Invalid User");
+			
+			jobDescriptionLabel.textProperty().set("You have encountered an error where the object you are loading is NULL. Please try again, and ensure the user is in the server system.");
+			
+			jobCompanyLabel.textProperty().set("error");
 		}
 		
 		if(!model.canEdit(job)) {
 			editButton.setVisible(false);
-		}
+		} 
 		
 	}
 

@@ -12,8 +12,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import main.Main;
+import server.ServerHandler;
+import codeparty.Company;
+import codeparty.JobPosting;
 import codeparty.Page;
 import codeparty.Person;
+import codeparty.Project;
+import codeparty.Skill;
 import views.CompanyController;
 import views.CompanyEditController;
 import views.HomeController;
@@ -132,18 +137,31 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		return fakeData.get(id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends Page> ArrayList<T> getAllObjectsOfType(Class<T> type) {
 		ArrayList<T> returnData = new ArrayList<T>();
+
+		if (type == Person.class) {
+			returnData = (ArrayList<T>) ServerHandler.retrieveAllPersons();
+		} else if (type == Project.class) {
+			returnData = (ArrayList<T>) ServerHandler.retrieveAllProjects();
+		} else if (type == Skill.class) {
+			returnData = (ArrayList<T>) ServerHandler.retrieveAllSkills();
+		} else if (type == Company.class) {
+			returnData = (ArrayList<T>) ServerHandler.retrieveAllCompanys();
+		} else if (type == JobPosting.class) {
+			returnData = (ArrayList<T>) ServerHandler.retrieveAllJobs();
+		} 
 		
-		for(Map.Entry<String, Page> entry : fakeData.entrySet()) {
-			@SuppressWarnings("unchecked")
-			T page = (T) entry.getValue();
-			
-			if(page.getClass() == type) {
-				returnData.add(page);
-			}
-		}
+//		for(Map.Entry<String, Page> entry : fakeData.entrySet()) {
+//			@SuppressWarnings("unchecked")
+//			T page = (T) entry.getValue();
+//			
+//			if(page.getClass() == type) {
+//				returnData.add(page);
+//			}
+//		}
 		
 		return returnData;
 	}
@@ -245,6 +263,7 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends Page> void showListOfLinks(Page page, Class<T> type) {
 		ArrayList<String> links = page.getLinks().get(type);
@@ -252,11 +271,22 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		
 		for(String link : links) {
 			try {
-				
-				@SuppressWarnings("unchecked")
-				T object = (T) getObject(link);
-				
-				pages.add(object);
+				if (type == Person.class) {
+					Person object = ServerHandler.getPersonObject(link);
+					pages.add((T) object);
+				} else if (type == Project.class) {
+					Project object = ServerHandler.getProjectObject(link);
+					pages.add((T) object);
+				} else if (type == Skill.class) {
+					Skill object = ServerHandler.getSkillObject(link);
+					pages.add((T) object);
+				} else if (type == Company.class) {
+					Company object = ServerHandler.getCompanyObject(link);
+					pages.add((T) object);
+				} else if (type == JobPosting.class) {
+					JobPosting object = ServerHandler.getJobPostingObject(link);
+					pages.add((T) object);
+				}
 				
 			} catch (Exception E) {
 		    			
@@ -273,16 +303,46 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 	}
 
 	public Person getCurrentUser() {
-		return (Person) getObject(currentUserID);
+		return ServerHandler.getPersonObject(currentUserID);
 	}
 
 	@Override
 	public ArrayList<Page> getLinksOf(String id, Class<? extends Page> linkType) {
-		ArrayList<String> linkIDs = getObject(id).getLinks().get(linkType);
 		ArrayList<Page> links = new ArrayList<>();
-		for (String linkID : linkIDs) {
-			links.add(getObject(linkID));
+		
+		if (linkType == Person.class) {
+			Person object = ServerHandler.getPersonObject(id);
+			ArrayList<String> linkIDs = object.getLinks().get(linkType);
+			for (String linkID : linkIDs) {
+				links.add(ServerHandler.getPersonObject(linkID));
+			}
+		} else if (linkType == Project.class) {
+			Project object = ServerHandler.getProjectObject(id);
+			ArrayList<String> linkIDs = object.getLinks().get(linkType);
+			for (String linkID : linkIDs) {
+				links.add(ServerHandler.getProjectObject(linkID));
+			}
+		} else if (linkType == Skill.class) {
+			Skill object = ServerHandler.getSkillObject(id);
+			ArrayList<String> linkIDs = object.getLinks().get(linkType);
+			for (String linkID : linkIDs) {
+				links.add(ServerHandler.getSkillObject(linkID));
+			}
+		} else if (linkType == Company.class) {
+			Company object = ServerHandler.getCompanyObject(id);
+			ArrayList<String> linkIDs = object.getLinks().get(linkType);
+			for (String linkID : linkIDs) {
+				links.add(ServerHandler.getCompanyObject(linkID));
+			}
+		} else if (linkType == JobPosting.class) {
+			JobPosting object = ServerHandler.getJobPostingObject(id);
+			ArrayList<String> linkIDs = object.getLinks().get(linkType);
+			for (String linkID : linkIDs) {
+				links.add(ServerHandler.getJobPostingObject(linkID));
+			}
 		}
+		
+		
 		return links;
 	}
 

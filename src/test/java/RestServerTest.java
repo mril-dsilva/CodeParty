@@ -114,7 +114,7 @@ class RestServerTest
         Company cUpdated = ServerHandler.getCompanyObject(auto.getId()); //CHECKING UPDATES
         assertEquals("Setting people up for success", cUpdated.getTagline());
         
-        //project tests
+        //project tests 
         ServerHandler.putProjectObject(app);
         Project p = ServerHandler.getProjectObject(app.getId());
         assertEquals("button APP", p.getName());

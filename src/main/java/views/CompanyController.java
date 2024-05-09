@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import models.ViewTransitionModel;
+import server.ServerHandler;
 import codeparty.Company;
 import codeparty.Person;
 import codeparty.Skill;
@@ -20,7 +21,7 @@ public class CompanyController {
 	}
 	
 	public void populateCompany(String id) {
-		company = (Company)model.getObject(id);
+		company = ServerHandler.getCompanyObject(id);
 		
 		if(company!=null)
 		{
@@ -30,11 +31,16 @@ public class CompanyController {
 			
 			taglineLabel.textProperty().set(company.getTagline());
 			
+		} else {
+			nameLabel.textProperty().set("Invalid User");
+			
+			bioLabel.textProperty().set("You have encountered an error where the object you are loading is NULL. Please try again, and ensure the user is in the server system.");
+
 		}
 		
 		if(!model.canEdit(company)) {
 			editButton.setVisible(false);
-		}
+		} 
 		
 	}
 	
