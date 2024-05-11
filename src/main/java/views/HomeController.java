@@ -2,10 +2,12 @@ package views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import models.ViewTransitionModelInterface;
 import codeparty.Company;
 import codeparty.JobPosting;
 import codeparty.Person;
+import codeparty.Project;
 import codeparty.Skill;
 
 public class HomeController {
@@ -15,7 +17,21 @@ public class HomeController {
     public void setModel(ViewTransitionModelInterface model) {
     	this.model = model;
     }
-	
+    @FXML
+    private Button companiesAll;
+
+    @FXML
+    private Button jobsAll;
+
+    @FXML
+    private Button peopleAll;
+
+    @FXML
+    private Button projectsAll;
+
+    @FXML
+    private Button skillsAll;
+
     @FXML
     void onCompaniesClick(ActionEvent event) {
     	model.showListOfAll(Company.class);
@@ -33,6 +49,7 @@ public class HomeController {
 
     @FXML
     void onProjectsClick(ActionEvent event) {
+    	model.showListOfAll(Project.class);
     	System.out.println("Projects Clicked");
     }
 

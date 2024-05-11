@@ -11,6 +11,7 @@ import codeparty.Company;
 import codeparty.JobPosting;
 import codeparty.Page;
 import codeparty.Person;
+import codeparty.Project;
 import codeparty.Skill;
 
 public class LinkListCell extends ListCell<LinkData>{
@@ -65,9 +66,12 @@ public class LinkListCell extends ListCell<LinkData>{
 		}else if(type.equals(Company.class)) {
 			model.showCompany(id);
 		}else if(type.equals(Skill.class)) {
+			System.out.println("Skill pressed");
 			model.showSkill(id);
 		}else if(type.equals(JobPosting.class)) {
 			model.showJobPosting(id);
+		}else if(type.equals(Project.class)) {
+			model.showProject(id);
 		}
 	}
 }

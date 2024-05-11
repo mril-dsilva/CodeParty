@@ -33,7 +33,7 @@ public class JobEditController {
     	job.setBody(jobDescriptionInput.getText());
     	
     	ServerHandler.updateJobPostingObject(job);
-    	model.showUser(job.getId());
+    	model.showJobPosting(job.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {

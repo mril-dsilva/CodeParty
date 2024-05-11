@@ -32,7 +32,7 @@ public class SkillEditController {
     	skill.setTagline(taglineText.getText());
     	
     	ServerHandler.updateSkillObject(skill);
-    	model.showUser(skill.getId());
+    	model.showSkill(skill.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {
@@ -45,6 +45,7 @@ public class SkillEditController {
     	nameText.setText(skill.getName());
     	taglineText.setText(skill.getTagline());
     	bioText.setText(skill.getBio());
+    	
     }
     
 

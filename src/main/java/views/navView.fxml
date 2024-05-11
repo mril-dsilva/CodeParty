@@ -5,19 +5,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.NavController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="750.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.NavController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-         	<Button mnemonicParsing="false" onAction="#onProfileClicked" text="My Profile">
+         	<Button id="profile" fx:id="profileButton" mnemonicParsing="false" onAction="#onProfileClicked" text="My Profile">
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding></Button>
-            <Button mnemonicParsing="false" onAction="#onHomeClicked" text="Home">
+            <Button id="home" fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeClicked" text="Home">
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </padding></Button>
-            
          </children>
       </HBox>
    </bottom>

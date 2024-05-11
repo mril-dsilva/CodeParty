@@ -7,7 +7,5 @@ public class StartMain {
 	}
 }
 
-// Edit and permissions is working
-// Show list of Recommended Jobs
-// Get Projects up and running 
-//List is not working for profile view, but is for all objects view
+// Get Projects up and running  O
+// Add mentor tag

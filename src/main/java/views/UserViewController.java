@@ -9,6 +9,7 @@ import server.JobRecommender;
 import server.ServerHandler;
 import codeparty.JobPosting;
 import codeparty.Person;
+import codeparty.Project;
 import codeparty.Skill;
 
 	public class UserViewController {
@@ -30,7 +31,7 @@ import codeparty.Skill;
 				
 				bioLabel.textProperty().set(person.getBio());
 				
-				roleLabel.textProperty().set((person.getCurrentCompany()).getJobTitle());
+				if(person.getCurrentCompany()!=null) {roleLabel.textProperty().set((person.getCurrentCompany()).getJobTitle());};
 				
 			} else {
 				nameLabel.textProperty().set("Invalid User");
@@ -92,7 +93,7 @@ import codeparty.Skill;
 	    
 	    @FXML
 	    void onProjectsListClick(ActionEvent event) {
-	    	
+	    	model.showListOfLinks(person, Project.class);
 	    }
 
 	    @FXML

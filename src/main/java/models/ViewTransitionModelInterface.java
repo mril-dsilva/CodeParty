@@ -19,6 +19,8 @@ public interface ViewTransitionModelInterface {
 	public void showUserEdit(String id);
 	public void showCompany(String id);
 	public void showCompanyEdit(String id);
+	public void showProject(String id);
+	public void showProjectEdit(String id);
 	public void showSkill(String id);
 	public void showSkillEdit(String id);
 	public void showJobPosting(String id);

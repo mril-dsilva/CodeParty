@@ -13,11 +13,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="750.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.UserViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ProjectController">
    <top>
       <StackPane prefHeight="155.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle fill="#4f4fff" height="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" StackPane.alignment="TOP_CENTER" />
+            <Rectangle fill="#de64b8" height="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="375.0" StackPane.alignment="TOP_CENTER" />
             <Circle fill="GREY" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" StackPane.alignment="BOTTOM_LEFT">
                <StackPane.margin>
                   <Insets left="25.0" top="25.0" />
@@ -31,7 +31,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="43.0" prefWidth="281.0" text="Mril D'silva">
+                  <Label fx:id="nameLabel" prefHeight="43.0" prefWidth="281.0" text="Project Name">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -40,7 +40,7 @@
                      </HBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button id="edit" fx:id="editButton" alignment="CENTER_RIGHT" contentDisplay="TOP" minHeight="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onEditButtonClick" text="Edit" HBox.hgrow="NEVER">
+                  <Button fx:id="editButton" alignment="CENTER_RIGHT" contentDisplay="TOP" minHeight="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onEditButtonClick" text="Edit" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets left="10.0" right="15.0" />
                      </HBox.margin>
@@ -50,7 +50,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="roleLabel" text="UI Designer (Role)">
+            <Label fx:id="taglineLabel" text="Tagline">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
@@ -58,7 +58,7 @@
                   <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="bioLabel" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim erat non nisi ornare vehicula. Donec vel arcu nec odio vestibulum consectetur id posuere sapien. Sed efficitur." wrapText="true">
+            <Label fx:id="bioLabel" text="Project description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim erat non nisi ornare vehicula. Donec vel arcu nec odio vestibulum consectetur id posuere sapien. Sed efficitur." wrapText="true">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
@@ -67,7 +67,7 @@
                </padding>
             </Label>
             <Separator maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="50.0" />
-            <Button fx:id="friendsListButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onFriendsListClick" text="Friends">
+            <Button fx:id="friendsListButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onFriendsListClick" text="Members">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -77,28 +77,13 @@
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="skillsListButton" centerShape="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSkillsListClick" text="Skills">
+            <Button fx:id="skillsListButton" centerShape="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSkillsListClick" text="Associated Skills">
                <padding>
                   <Insets bottom="20.0" top="20.0" />
                </padding>
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="projectsListButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onProjectsListClick" text="Projects">
-               <padding>
-                  <Insets bottom="20.0" top="20.0" />
-               </padding>
-               <font>
-                  <Font size="16.0" />
-               </font></Button>
-            <Button fx:id="jobsListButton" layoutX="10.0" layoutY="317.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onJobsListClick" text="Recommended Jobs" textFill="#0120eb">
-               <padding>
-                  <Insets bottom="20.0" top="20.0" />
-               </padding>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
    </center>

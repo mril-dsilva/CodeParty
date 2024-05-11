@@ -27,6 +27,8 @@ import views.JobEditController;
 import views.LinkListCell;
 import views.LoginController;
 import views.NavController;
+import views.ProjectController;
+import views.ProjectEditController;
 import views.SkillController;
 import views.SkillEditController;
 import views.UserEditController;
@@ -210,7 +212,23 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		}
 		
 	}
-
+	public void showProject(String id) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("../views/projectView.fxml"));
+		
+		try {
+			Pane view = loader.load();
+			navView.setCenter(view);
+			ProjectController controller = loader.getController();
+			controller.setModel(this);
+			controller.populateProject(id);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	};
 	@Override
 	public void showSkill(String id) {
 		FXMLLoader loader = new FXMLLoader();
@@ -272,11 +290,14 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		for(String link : links) {
 			try {
 				if (type == Person.class) {
+					System.out.println();
 					Person object = ServerHandler.getPersonObject(link);
 					pages.add((T) object);
+					System.out.println(object);
 				} else if (type == Project.class) {
 					Project object = ServerHandler.getProjectObject(link);
 					pages.add((T) object);
+					System.out.println(object);
 				} else if (type == Skill.class) {
 					Skill object = ServerHandler.getSkillObject(link);
 					pages.add((T) object);
@@ -295,7 +316,7 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		
 		ListModel listModel = new ListModel();
     	for(Page receivedPage : pages) {
-        	listModel.addItem(new LinkData(receivedPage.getName(), receivedPage.getId(), Person.class));
+        	listModel.addItem(new LinkData(receivedPage.getName(), receivedPage.getId(), type));
     	}
     	
     	this.showList(listModel);
@@ -388,7 +409,25 @@ public class ViewTransitionModel implements ViewTransitionModelInterface {
 		}
 		
 	}
-
+	@Override
+	public void showProjectEdit(String id) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("../views/projectEditview.fxml"));
+		
+		try {
+			Pane view = loader.load();
+			navView.setCenter(view);
+			ProjectEditController controller = loader.getController();
+			controller.setModel(this);
+			controller.populateProject(id);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	};
+	
 	@Override
 	public void showSkillEdit(String id) {
 		FXMLLoader loader = new FXMLLoader();

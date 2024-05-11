@@ -7,11 +7,12 @@ import javafx.scene.control.TextField;
 import models.ViewTransitionModelInterface;
 import server.ServerHandler;
 import codeparty.Company;
+import codeparty.Project;
 
-public class CompanyEditController {
+public class ProjectEditController {
 
 	ViewTransitionModelInterface model;
-	Company company;
+	Project project;
 	
     @FXML
     private TextField bioText;
@@ -27,24 +28,24 @@ public class CompanyEditController {
     
     @FXML
     void onEditButtonClick(ActionEvent event) {
-    	company.setBio(bioText.getText());
-    	company.setName(nameText.getText());
-    	company.setTagline(taglineText.getText());
+    	project.setBio(bioText.getText());
+    	project.setName(nameText.getText());
+    	project.setTagline(taglineText.getText());
     	
-    	ServerHandler.updateCompanyObject(company);
-    	model.showCompany(company.getId());
+    	ServerHandler.updateProjectObject(project);
+    	model.showProject(project.getId());
     }
     
     public void setModel(ViewTransitionModelInterface model) {
     	this.model = model;
     }
     
-    public void populateCompany(String ID) {
-    	ServerHandler.getCompanyObject(ID);
+    public void populateProject(String ID) {
+    	project = ServerHandler.getProjectObject(ID);
     	
-    	nameText.setText(company.getName());
-    	taglineText.setText(company.getTagline());
-    	bioText.setText(company.getBio());
+    	nameText.setText(project.getName());
+    	taglineText.setText(project.getTagline());
+    	bioText.setText(project.getBio());
     }
 
 }
