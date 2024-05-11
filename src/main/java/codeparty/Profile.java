@@ -1,5 +1,7 @@
 package codeparty;
 
+import java.util.Objects;
+
 public abstract class Profile extends Page
 {
 	public Profile(String id, String name, String bio) {
@@ -24,6 +26,26 @@ public abstract class Profile extends Page
 	 */
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(bio, name);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		return Objects.equals(bio, other.bio) && Objects.equals(name, other.name);
 	}
 
 	/**

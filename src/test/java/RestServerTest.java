@@ -159,6 +159,7 @@ class RestServerTest
         ServerHandler.putJobPostingObject(pythonskillJob);
         ServerHandler.putJobPostingObject(emilyfriendJob);
         
+        //RETREIVING ALL JOBS & performing Job Recommendation on NEWMAN
         Person boy = new Person(); boy.setName("NEWMAN"); boy.setID("jobpostingtesterboy"); //make new person 
         ServerHandler.putPersonObject(boy);
         JobRecommender jobRecommender = new JobRecommender();
@@ -178,10 +179,14 @@ class RestServerTest
 		jobRecommender.recommendJobs(boy);
 		assertEquals(boy.getLinks().get(JobPosting.class).size(), 4); //+1 friends jobposting
 		
-		assertTrue(boy.hasLink(JobPosting.class, emilyfriendJob.getId()));
-        
-        
+		assertTrue(boy.hasLink(JobPosting.class, emilyfriendJob.getId())); //checks if it has the new jobposting
+		
+		ArrayList<Person> allpeople = new ArrayList<Person>(); allpeople.add(boy); allpeople.add(John);allpeople.add(emily);
+        //checking RETREIVE ALL persons
+		ArrayList<Person> serverpeople = ServerHandler.retrieveAllPersons();
+        assertEquals(allpeople.size(),serverpeople.size());
 	}
 
+	
 }
 

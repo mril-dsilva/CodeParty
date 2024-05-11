@@ -1,6 +1,7 @@
 package codeparty;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Person extends Profile
 {
@@ -17,6 +18,24 @@ public class Person extends Profile
 		links.put(JobPosting.class, new ArrayList<String>());
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(currentCompany, experiences, type);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		return Objects.equals(currentCompany, other.currentCompany) && Objects.equals(experiences, other.experiences)
+				&& type == other.type;
+	}
+
 	public Person() {
 		super();
 		currentCompany = new Experience();

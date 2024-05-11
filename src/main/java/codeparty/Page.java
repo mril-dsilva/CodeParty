@@ -3,6 +3,7 @@ package codeparty;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Page 
@@ -62,7 +63,25 @@ public abstract class Page
     	// void
     }
     
-    // Method to remove a link from the page
+    @Override
+	public int hashCode() {
+		return Objects.hash(id, links, usersCanEdit, usersCanView);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Page other = (Page) obj;
+		return Objects.equals(id, other.id) && Objects.equals(links, other.links)
+				&& Objects.equals(usersCanEdit, other.usersCanEdit) && Objects.equals(usersCanView, other.usersCanView);
+	}
+
+	// Method to remove a link from the page
     public void removeLink(Class<?> type, String id) {
     	links.get(type).remove(id);
         // void

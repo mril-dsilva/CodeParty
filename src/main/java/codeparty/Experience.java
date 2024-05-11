@@ -73,7 +73,6 @@ public class Experience
 	}
 	
 	public Experience() {
-		this.id = UUID.randomUUID().toString();
 		this.companyID = "defualt company";
 		this.jobTitle = "Software Engineer";
 		this.description = "Random Experiences of a Soft eng";
