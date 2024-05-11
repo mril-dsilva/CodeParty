@@ -29,7 +29,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.Main;
-import model.ItemData;
 import models.LoginModel;
 import models.ViewTransitionModel;
 import models.ViewTransitionModelInterface;
@@ -214,7 +213,7 @@ public class AutomatedTestFX {
 		robot.clickOn("#friendsListButton"); robot.clickOn("Emily L Chen");
 		robot.clickOn("#projectsListButton"); robot.clickOn("Mobile App");
 		robot.clickOn("#friendsListButton"); robot.clickOn("Emily L Chen");
-		robot.clickOn("#profile");
+		robot.clickOn("#home");
 		
 	}
 	

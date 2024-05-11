@@ -25,9 +25,6 @@ import server.ServerHandler;
 class MVCTestSetup
 {
 	
-	
-	
-	
 	public void main() {
 		
 		ArrayList<Experience> experiences = new ArrayList<Experience>();
