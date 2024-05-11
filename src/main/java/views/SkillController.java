@@ -24,7 +24,7 @@ public class SkillController {
     private Button projectsListButton;
 
     @FXML
-    private Label skillNameLabel;
+    private Label nameLabel;
 
     @FXML
     private Button skillsListButton;
@@ -65,14 +65,14 @@ public class SkillController {
 		
 		if(skill!=null)
 		{
-			skillNameLabel.textProperty().set(skill.getName());
+			nameLabel.textProperty().set(skill.getName());
 			
 			bioLabel.textProperty().set(skill.getBio());
 			
 			taglineLabel.textProperty().set(skill.getTagline());
 			
 		} else {
-			skillNameLabel.textProperty().set("Invalid User");
+			nameLabel.textProperty().set("Invalid User");
 			
 			bioLabel.textProperty().set("You have encountered an error where the object you are loading is NULL. Please try again, and ensure the user is in the server system.");
 			

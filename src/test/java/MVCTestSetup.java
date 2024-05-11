@@ -32,14 +32,13 @@ class MVCTestSetup
 		
 		ArrayList<Experience> experiences = new ArrayList<Experience>();
 		ArrayList<String> editpermissions = new ArrayList<String>();
-		Map<Class<?>, ArrayList<String>> links = new HashMap<>();
 		
 		Person emily, John, Michael, Newman, Harshit, Aadi, Mril;
-		Company auto, apple, amazon, microsoft, centre;
-		Experience job, internship, dictatorship, assistantship;
+		Company auto, apple, amazon, microsoft;
+		Experience job, internship;
 		Skill JAVA, py, REST, English, juggling;
-		Project app, casestudy, research, minigame;
-		JobPosting engineer, doctor, lawyer, manager, CEO, monk;
+		Project app, casestudy;
+		JobPosting engineer, doctor;
 		
 		ServerHandler.createTeam();
 		ArrayList<String> pagesList = new ArrayList<String>();
@@ -50,13 +49,13 @@ class MVCTestSetup
         pagesList.add("JobPosting");
         ServerHandler.createAllPages(pagesList);
         
-        JAVA = new Skill(UUID.randomUUID().toString(), "Java Programming", "Fake bio inserted here for the coding language skill", "You are using it right now!");
-        py = new Skill();
+        JAVA = new Skill("java", "Java Programming", "Fake bio inserted here for the coding language skill", "You are using it right now!");
+        py = new Skill(); py.setBio("IF you can see this job posting through your profile, you have the PYTHON skill!");
         
         app = new Project(UUID.randomUUID().toString(), "Mobile App", "The best mobile app in the world that can solve all your problems in a click", "123", "Project by Emily", "github.com"); app.setUsersCanEdit(editpermissions);
         casestudy = new Project();
         
-        auto = new Company(UUID.randomUUID().toString(), "AutoNomy", "AI Driving Company. based in Fan Srancisco", "leave the driving to us!");
+        auto = new Company("auto", "AutoNomy", "AI Driving Company. based in Fan Srancisco", "leave the driving to us!");
         apple = new Company(); 
         
         internship = new Experience(UUID.randomUUID().toString(), auto.getId(), "Software Intern","Solved problems with code!");
@@ -72,6 +71,33 @@ class MVCTestSetup
         John = new Person(); Michael = new Person(); Newman = new Person(); Harshit = new Person(); Aadi = new Person(); Mril = new Person(); 
         John.setName("John Doe"); Michael.setName("John Doe"); Newman.setName("Newman Oldboy"); Harshit.setName("Harshit Chicho"); Aadi.setName("Aadi Jain"); Mril.setName("Mril D'silva");
         
+        John.setBio("Curious traveler and food lover, John has visited over 30 countries and loves sharing stories from different cultures.");
+        Michael.setBio("Software developer by day and aspiring novelist by night, Michael writes about the intersection of technology and human emotions.");
+        Newman.setBio("Veteran film critic and history buff, Newman enjoys deep dives into the cinema of various eras and its impact on society.");
+        Harshit.setBio("A passionate environmentalist, Harshit is actively involved in local conservation efforts and promotes sustainable living.");
+        Aadi.setBio("Aadi is an entrepreneur who has founded multiple successful startups in the tech industry, focusing on innovative solutions to everyday problems.");
+        Mril.setBio("Artist and musician, Mril creates expressive paintings and composes music that explores the depth of human experience.");
+
+        REST = new Skill(); English = new Skill(); microsoft = new Company(); juggling = new Skill();
+        REST.setName("REST APIs");
+        REST.setTagline("Representational State Transfer");
+        REST.setBio("Essential for web services and cloud applications, REST APIs allow for flexible, network-based interactions.");       
+        English.setName("English Language");
+        English.setTagline("Global Lingua Franca");
+        English.setBio("The dominant language for global communication in business, science, information technology, and entertainment.");
+        juggling.setName("Juggling");
+        juggling.setTagline("Art of object manipulation");
+        juggling.setBio("Not just a party trick, juggling improves hand-eye coordination, focus, and mental alertness.");
+        microsoft.setName("Microsoft");
+        microsoft.setTagline("Empowering every person and every organization on the planet to achieve more.");
+        microsoft.setBio("Founded by Bill Gates and Paul Allen in 1975, Microsoft stands as a titan in the tech industry, known for its Windows operating systems, Office productivity suite, and Azure cloud services.");
+
+        // Update these objects on the server
+        ServerHandler.putSkillObject(REST);
+        ServerHandler.putSkillObject(English);
+        ServerHandler.putSkillObject(juggling);
+        ServerHandler.putCompanyObject(microsoft);
+       
       //persons population
         ServerHandler.putPersonObject(John);
         John.setType(PersonType.MENTOR);
@@ -79,7 +105,34 @@ class MVCTestSetup
         John.addLink(Person.class, emily.getId());
         John.addLink(Skill.class, JAVA.getId());
         John.addLink(Project.class, app.getId());
-        ServerHandler.updatePersonObject(John); //UPDATING OBJECT
+        ServerHandler.updatePersonObject(John); 
+        
+        // Linking Michael
+        Michael.addLink(Person.class, Newman.getId());
+        Michael.addLink(Skill.class, JAVA.getId());
+        Michael.addLink(Project.class, app.getId());
+        ServerHandler.updatePersonObject(Michael);
+
+        // Linking Newman
+        Newman.addLink(Person.class, Harshit.getId());
+        Newman.addLink(Skill.class, REST.getId());
+        Newman.addLink(Project.class, casestudy.getId());
+        ServerHandler.updatePersonObject(Newman);
+
+        // Linking Harshit
+        Harshit.addLink(Person.class, Aadi.getId());
+        Harshit.addLink(Skill.class, English.getId());
+        ServerHandler.updatePersonObject(Harshit);
+
+        // Linking Aadi
+        Aadi.addLink(Person.class, Mril.getId());
+        Aadi.addLink(Skill.class, juggling.getId());
+        ServerHandler.updatePersonObject(Aadi);
+
+        // Linking Mril
+        Mril.addLink(Person.class, emily.getId());
+        Mril.addLink(Skill.class, py.getId());
+        ServerHandler.updatePersonObject(Mril);
         
         
 		ServerHandler.putPersonObject(emily); ServerHandler.putPersonObject(Michael); ServerHandler.putPersonObject(Newman); ServerHandler.putPersonObject(Harshit); ServerHandler.putPersonObject(Aadi); ServerHandler.putPersonObject(Mril);
@@ -96,6 +149,7 @@ class MVCTestSetup
 
 
         //project tests
+        app.setTagline("A solo project by Emily! I might need friends.."); app.addLink(Person.class, emily.getId());
         ServerHandler.putProjectObject(app); ServerHandler.putProjectObject(casestudy);
        
         app.setOwnerID(emily.getId()); app.setUsersCanEdit(editpermissions);

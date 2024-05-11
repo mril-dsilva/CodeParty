@@ -7,5 +7,5 @@ public class StartMain {
 	}
 }
 
-// Get Projects up and running  O
-// Add mentor tag
+// USERNAME -> emily
+// PASSWORD -> 123

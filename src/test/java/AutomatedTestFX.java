@@ -1,4 +1,8 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
+import java.sql.Time;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +33,7 @@ import model.ItemData;
 import models.LoginModel;
 import models.ViewTransitionModel;
 import models.ViewTransitionModelInterface;
+import server.ServerHandler;
 import views.MainController;
 
 
@@ -59,6 +64,8 @@ public class AutomatedTestFX {
 		
 		MVCTestSetup mvcTestSetup = new MVCTestSetup();
 		mvcTestSetup.main();
+
+		
 		
 		//LOGIN & USER PROFILE EDITING
 		LoginModel m = new LoginModel();
@@ -68,59 +75,151 @@ public class AutomatedTestFX {
 		robot.write(m.getPassword());
 		robot.clickOn("#submitButton");
 		
-//		robot.clickOn("#home");
-//		
-//		robot.clickOn("#profile");
-//		Thread.sleep(1000);
-//		
-//		robot.clickOn("#edit");
-//		clearAllText(robot,"#nameInput",15);
-//		robot.clickOn("#nameInput");
-//		robot.write("Emily L Chen");
-//		
-//		robot.clickOn("#bioInput");
-//		robot.push(javafx.scene.input.KeyCode.END);
-//		robot.write(" Oh and I also like to make blueberry tres leches cake!");
-//		
-//		robot.clickOn("#roleInput");
-//		robot.push(javafx.scene.input.KeyCode.HOME);
-//		robot.write("Lead ");
-//		
-//		robot.clickOn("#update");
-//		Thread.sleep(1000);
-//		
-//		//CHECKING ALL LISTS 
-//		robot.clickOn("#friendsListButton");
-//		robot.clickOn("#profile");
-//		robot.clickOn("#skillsListButton");
-//		robot.clickOn("#profile");
-//		robot.clickOn("#projectsListButton");
-//		robot.clickOn("#profile");
-//		robot.clickOn("#jobsListButton");
-//		robot.clickOn("#profile");
+		robot.clickOn("#home");
+		
+		robot.clickOn("#profile");
+		Thread.sleep(1000);
+		
+		robot.clickOn("#edit");
+		clearAllText(robot,"#nameInput",15);
+		robot.clickOn("#nameInput");
+		robot.write("Emily L Chen");
+		
+		robot.clickOn("#bioInput");
+		robot.push(javafx.scene.input.KeyCode.END);
+		robot.write(" Oh and I also like to make blueberry tres leches cake!");
+		
+		robot.clickOn("#roleInput");
+		robot.push(javafx.scene.input.KeyCode.HOME);
+		robot.write("Lead ");
+		
+		robot.clickOn("#update");
+		Thread.sleep(1000);
+		
+		//CHECKING ALL LISTS 
+		robot.clickOn("#friendsListButton");
+		robot.clickOn("#profile");
+		robot.clickOn("#skillsListButton");
+		robot.clickOn("#profile");
+		robot.clickOn("#projectsListButton");
+		robot.clickOn("#profile");
+		robot.clickOn("#jobsListButton");
+		robot.clickOn("#profile");
+		
 		
 		robot.clickOn("#home");
 		robot.clickOn("#peopleAll");
-		selectItem(robot,0);
-		//ObservableList<Page> people = getItems(robot).getItems();
-		//System.out.println(people);
+		
+		ArrayList<Person> allpeople = ServerHandler.retrieveAllPersons();
+		ArrayList<Project> allprojects = ServerHandler.retrieveAllProjects();
+		ArrayList<Skill> allskills = ServerHandler.retrieveAllSkills();
+		ArrayList<Company> allcompanies = ServerHandler.retrieveAllCompanys();
+		ArrayList<JobPosting> alljobs = ServerHandler.retrieveAllJobs();
+		
+		for (int i = 0; i < allpeople.size(); i++) {
+			
+		    System.out.println("Interacted with: " + allpeople.get(i).getName());
+		    selectItem(robot,i);
+		    checkTextValue(robot,allpeople.get(i).getName()); //checking ALL PEOPLES list
+		    Thread.sleep(50);
+		    robot.clickOn("#home");
+		    robot.clickOn("#peopleAll");
+			
+		}
 		
 		
-		robot.clickOn("#home");
-		robot.clickOn("#projectsAll");
+		for (int i = 0; i < allprojects.size(); i++) {
+			robot.clickOn("#home");
+		    robot.clickOn("#projectsAll");
+			
+		    System.out.println("Interacted with: " + allprojects.get(i).getName());
+		    selectItem(robot,i);
+		    checkTextValue(robot,allprojects.get(i).getName()); //checking ALL PROJECTS list
+		    Thread.sleep(50);
+		    
+			
+		}
+		
 		robot.clickOn("#home");
 		robot.clickOn("#skillsAll");
+		
+		for (int i = 0; i < allskills.size(); i++) {
+			
+		    System.out.println("Interacted with: " + allskills.get(i).getName());
+		    selectItem(robot,i);
+		    checkTextValue(robot,allskills.get(i).getName()); //checking ALL SKILLS list
+		    Thread.sleep(50);
+		    robot.clickOn("#home");
+		    robot.clickOn("#skillsAll");
+			
+		}
+		
 		robot.clickOn("#home");
 		robot.clickOn("#jobsAll");
+		
+		for (int i = 0; i < alljobs.size(); i++) {
+			
+		    System.out.println("Interacted with: " + alljobs.get(i).getName());
+		    selectItem(robot,i);
+		    checkTextValue(robot,alljobs.get(i).getName()); //checking ALL jobs list
+		    Thread.sleep(50);
+		    robot.clickOn("#home");
+		    robot.clickOn("#jobsAll");
+			
+		}
+		
 		robot.clickOn("#home");
 		robot.clickOn("#companiesAll");
+		
+		for (int i = 0; i < allcompanies.size(); i++) {
+			
+		    System.out.println("Interacted with: " + allcompanies.get(i).getName());
+		    selectItem(robot,i);
+		    checkTextValue(robot,allcompanies.get(i).getName()); //checking ALL jobs list
+		    Thread.sleep(50);
+		    robot.clickOn("#home");
+		    robot.clickOn("#companiesAll");
+			
+		}
+		
 		robot.clickOn("#home");
+		robot.clickOn("#profile");
+		robot.clickOn("#skillsListButton"); robot.clickOn("Java Programming");
 		
+		robot.clickOn("#editButton");
+		clearAllText(robot,"#nameText",16);
+		robot.clickOn("#nameText");
+		robot.write("Java");
+		robot.clickOn("#bioText");
+		robot.push(javafx.scene.input.KeyCode.END);
+		robot.write(". I am taking Emily's permissions to edit this page now. Let's see if the server updates the prototype.");
+		robot.clickOn("#editButton");
+		Skill java = ServerHandler.getSkillObject("java");
+		java.setUsersCanEdit(new ArrayList<String>());
+		ServerHandler.updateSkillObject(java);
+		robot.clickOn("#profile");
+		robot.clickOn("#skillsListButton"); robot.clickOn("Java");
+		Thread.sleep(500);
 		
+		robot.clickOn("#profile");
+		robot.clickOn("#jobsListButton"); robot.clickOn("pythonskillJob");
+		robot.clickOn("#applyButton");
+		Thread.sleep(500);
+		robot.clickOn("#home");
+		robot.clickOn("#peopleAll"); robot.clickOn("NEWMAN");
+		robot.clickOn("#jobsListButton"); Thread.sleep(500);
 		
-		
+		robot.clickOn("#profile");
+		robot.clickOn("#projectsListButton"); robot.clickOn("Mobile App");
+		robot.clickOn("#friendsListButton"); robot.clickOn("Emily L Chen");
+		robot.clickOn("#projectsListButton"); robot.clickOn("Mobile App");
+		robot.clickOn("#friendsListButton"); robot.clickOn("Emily L Chen");
+		robot.clickOn("#profile");
 		
 	}
+	
+
+	
 	private void selectItem(FxRobot robot, int index)
 	  {
 		try
@@ -191,11 +290,11 @@ public class AutomatedTestFX {
 	  	}
 	
 	
-	
+
 	private void checkTextValue(FxRobot robot,String text)
 	{
-		 Assertions.assertThat(robot.lookup("#desc")
-			        .queryAs(TextArea.class)).hasText(text);   
+		 Assertions.assertThat(robot.lookup("#nameLabel")
+			        .queryAs(Label.class)).hasText(text);   
 	}
 	
 	public void clearAllText(FxRobot robot, String cssid, int textLength) {
@@ -211,111 +310,5 @@ public class AutomatedTestFX {
 	    }
 	    
 	}
-	/*
-	//Subtraction helper
-	private void subtract(String num1, String num2, FxRobot robot) {
-		robot.clickOn("#num1Input");
-		robot.write(num1);
-		robot.clickOn("#num2Input");
-		robot.write(num2);
-		robot.clickOn("#subtractButton");
-	}
-	
-	//Multiply helper
-	private void multiply(String num1, String num2, FxRobot robot) {
-		robot.clickOn("#num1Input");
-		robot.write(num1);
-		robot.clickOn("#num2Input");
-		robot.write(num2);
-		robot.clickOn("#multiplyButton");
-	}
-	
-	//Divide helper
-	private void divide(String num1, String num2, FxRobot robot) {
-		robot.clickOn("#num1Input");
-		robot.write(num1);
-		robot.clickOn("#num2Input");
-		robot.write(num2);
-		robot.clickOn("#divideButton");
-	}
-	
-	//CheckResult
-	private void check(String result, FxRobot robot) {
-		Assertions.assertThat(robot.lookup("#resultText")
-				.queryAs(Label.class)).hasText(result);
-	}
-	
 
-	@SuppressWarnings("unchecked")
-	private ListView<Operation> getHistory(FxRobot robot){
-		return (ListView<Operation>) robot.lookup("#historyList")
-				.queryAll().iterator().next();
-	}
-
-	@Test
-	public void TestCalculator(FxRobot robot) {
-		try
-		{
-			//Check if History is empty
-			ListView<Operation> operations = getHistory(robot);
-			System.out.println(operations);
-			
-			Assertions.assertThat(operations).isEmpty();
-			
-			//ADD
-			String num1 = "7";
-			String num2 = "10";
-			add(num1,num2,robot); //checked addition
-			//Thread.sleep(1000);
-			String result = "17";
-			check(result,robot); //checked result
-
-			//SUBTRACT
-			subtract(num1,num2,robot); //checked subtraction
-			//Thread.sleep(1000);
-			String result2 = "-3";
-			check(result2,robot); //checked result
-
-			//MULTIPLY
-			multiply(num1,num2,robot); //checked multiplication
-			//Thread.sleep(1000);
-			String result3 = "70";
-			check(result3,robot); //checked result
-			
-			//DIVIDE
-			divide(num1,num2,robot); //checked division
-			//Thread.sleep(1000);
-			String result4 = "0.7";
-			check(result4,robot); //checked result
-			
-			//DIVIDE EDGE CASE (DIVIDE BY ZERO)
-			String num3 = "0";
-			divide(num1,num3,robot); //checked division
-			Thread.sleep(1000);
-			String result5 = "NaN";
-			check(result5,robot); //checked result
-			
-			ObservableList<Operation> items = FXCollections.observableArrayList(
-					new Operation(7.0, " + ", 10.0, 17.0),
-	                new Operation(7.0, " - ", 10.0, -3.0),
-	                new Operation(7.0, " * ", 10.0, 70.0),
-	                new Operation(7.0, " / ", 10.0, 0.7)
-			);
-			
-			Assertions.assertThat(operations).isNotEmpty();
-			System.out.println(operations);
-			
-			for(Operation i:items) {
-				
-				Assertions.assertThat(operations).hasListCell(i);
-				
-			}
-			
-			
-		} catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 }

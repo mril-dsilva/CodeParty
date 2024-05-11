@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.LinkListCellController">
    <center>
-      <Label fx:id="itemName" onMouseClicked="#onItemClicked" prefWidth="200.0" text="Label" BorderPane.alignment="CENTER">
+      <Label id="label" fx:id="itemName" onMouseClicked="#onItemClicked" prefWidth="200.0" text="Label" BorderPane.alignment="CENTER">
          <font>
             <Font size="23.0" />
          </font>

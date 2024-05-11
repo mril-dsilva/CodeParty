@@ -29,7 +29,7 @@ public class JobPosting extends Page
 	
 	public JobPosting() {
 		super();
-		companyID = UUID.randomUUID().toString();
+		companyID = "auto";
 		name = "Engineer";
 		body = "Engineer Products, what else!";
 		// TODO Auto-generated constructor stub

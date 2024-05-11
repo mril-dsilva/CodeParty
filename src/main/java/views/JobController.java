@@ -24,7 +24,7 @@ public class JobController {
     private Label jobDescriptionLabel;
 
     @FXML
-    private Label jobNameLabel;
+    private Label nameLabel;
 
     @FXML
     void onEditButtonClick(ActionEvent event) {
@@ -44,14 +44,16 @@ public class JobController {
 		
 		if(job!=null)
 		{
-			jobNameLabel.textProperty().set(job.getName());
+			nameLabel.textProperty().set(job.getName());
 			
 			jobDescriptionLabel.textProperty().set(job.getBody());
 			
-			jobCompanyLabel.textProperty().set(((Company)model.getObject(job.getCompanyID())).getName()); //SEEMS LIKE THERE NEEDS TO BE A FIX HERE TO WORK WITH REStseRVER
+			Company jobcomp = ServerHandler.getCompanyObject(job.getCompanyID());
+			
+			jobCompanyLabel.textProperty().set(jobcomp.getName()); 
 			
 		} else {
-			jobNameLabel.textProperty().set("Invalid User");
+			nameLabel.textProperty().set("Invalid User");
 			
 			jobDescriptionLabel.textProperty().set("You have encountered an error where the object you are loading is NULL. Please try again, and ensure the user is in the server system.");
 			
